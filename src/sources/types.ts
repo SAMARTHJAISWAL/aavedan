@@ -1,4 +1,8 @@
-export type Board = 'greenhouse' | 'lever' | 'ashby';
+/** Company boards aavedan reads directly, remote-job feeds, and single pages the person pasted. */
+export type Board = 'greenhouse' | 'lever' | 'ashby' | 'smartrecruiters' | 'workable' | 'remotive' | 'remoteok' | 'himalayas' | 'jobicy' | 'link';
+
+/** Boards whose forms aavedan has been tested on; others are filled from the person's own browser. */
+export const FORM_BOARDS: Board[] = ['greenhouse', 'lever', 'ashby'];
 
 export interface Company {
   name: string;
@@ -23,6 +27,8 @@ export interface Job {
   url: string;
   applyUrl: string;
   postedAt: string | null;
-  /** Plain text, HTML stripped. */
+  /** Plain text, HTML stripped. Empty until fetched for boards that list jobs without it. */
   description: string;
+  /** The feed or site the posting came through, credited wherever it is shown. Null for company boards. */
+  via?: string | null;
 }

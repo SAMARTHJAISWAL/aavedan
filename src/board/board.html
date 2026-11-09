@@ -193,7 +193,7 @@ function renderView() {
     v.innerHTML = rows.length ? `<div class="list">${rows.map(q => `
       <article class="job">
         <div class="ring" style="--p:${q.score}" title="Fit ${q.score} of 100"><span>${q.score}</span></div>
-        <div><h3>${esc(q.title)}</h3><div class="co">${esc(q.company)} · ${esc(q.location || 'Location not stated')}${q.postedAt ? ` · posted ${when(q.postedAt)}` : ''}</div><p class="one">${esc(q.oneLine)}</p></div>
+        <div><h3>${esc(q.title)}</h3><div class="co">${esc(q.company)} · ${esc(q.location || 'Location not stated')}${q.postedAt ? ` · posted ${when(q.postedAt)}` : ''}${q.via ? ` · via <a href="${esc(safeUrl(q.url))}" target="_blank" rel="noopener">${esc(q.via)}</a>` : ''}</div><p class="one">${esc(q.oneLine)}</p></div>
         <div class="side"><a class="btn" href="${esc(safeUrl(q.url))}" target="_blank" rel="noopener">Posting</a><button class="btn" data-copy="aavedan apply ${esc(q.handle)} --send"><span class="cmd">apply ${esc(q.handle)}</span></button></div>
         ${q.matches.length || q.gaps.length ? `<details><summary>Why this score</summary><ul>${q.matches.map(m => `<li class="m">${esc(m)}</li>`).join('')}${q.gaps.map(g => `<li class="g">${esc(g)}</li>`).join('')}</ul></details>` : ''}
       </article>`).join('')}</div>` : `<div class="empty">No jobs match. Lower the fit, or run <code>aavedan find</code>.</div>`;

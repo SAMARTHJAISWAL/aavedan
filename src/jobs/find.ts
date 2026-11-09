@@ -3,6 +3,7 @@ import type { Profile } from '../profile/schema.ts';
 import type { Llm } from '../llm.ts';
 import type { Company, Job } from '../sources/types.ts';
 import { listJobs } from '../sources/boards.ts';
+import { FEEDS, describe } from '../sources/more.ts';
 import { judge } from './filter.ts';
 import { rankJob } from './rank.ts';
 import { loadJobs, saveJobs, type QueuedJob } from './store.ts';
@@ -20,7 +21,7 @@ export interface FindReport {
   dropped: Record<string, number>;
 }
 
-export async function find(opts: { llm: Llm; profile: Profile; companies: Company[]; rankLimit?: number; log?: (s: string) => void; fetcher?: (c: Company) => Promise<Job[]> }): Promise<FindReport> {
+export async function find(opts: { llm: Llm; profile: Profile; companies: Company[]; rankLimit?: number; log?: (s: string) => void; fetcher?: (c: Company) => Promise<Job[]>; feeds?: boolean }): Promise<FindReport> {
   const log = opts.log ?? (() => {});
   const fetcher = opts.fetcher ?? listJobs;
   const failed: string[] = [];
@@ -32,8 +33,21 @@ export async function find(opts: { llm: Llm; profile: Profile; companies: Compan
       return [];
     }
   });
-  const all = lists.flat();
-  log(`Read ${all.length} postings from ${opts.companies.length - failed.length} companies.`);
+  const fromFeeds: Job[] = [];
+  if (opts.feeds !== false) {
+    for (const f of FEEDS) {
+      try {
+        const got = await f.load();
+        fromFeeds.push(...got);
+      } catch (e) {
+        failed.push(`${f.name} (${(e as Error).message})`);
+      }
+    }
+  }
+  // The same job often appears on a company board and a feed; keep the company board's copy.
+  const seenTitle = new Set(lists.flat().map(j => `${j.company.toLowerCase()}|${j.title.toLowerCase()}`));
+  const all = [...lists.flat(), ...fromFeeds.filter(j => !seenTitle.has(`${j.company.toLowerCase()}|${j.title.toLowerCase()}`))];
+  log(`Read ${all.length} postings: ${lists.flat().length} from ${opts.companies.length - failed.length} company boards, ${all.length - lists.flat().length} from remote-job feeds.`);
 
   const file = loadJobs();
   const now = new Date().toISOString();
@@ -71,6 +85,12 @@ export async function find(opts: { llm: Llm; profile: Profile; companies: Compan
   let done = 0;
   await mapLimit(toRank, 6, async (q: QueuedJob) => {
     try {
+      // Boards that list jobs without their text: fetch it now, then check the years asked again.
+      if (!q.job.description) {
+        q.job.description = await describe(q.job);
+        const again = judge(q.job, opts.profile);
+        if (!again.pass) { q.filtered = again.reason; return; }
+      }
       q.fit = await rankJob(opts.llm, q.job, opts.profile);
     } catch (e) {
       log(`  could not rate ${q.job.company} · ${q.job.title}: ${(e as Error).message}`);

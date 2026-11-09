@@ -107,6 +107,8 @@ export function fromAshby(c: Company, j: AshbyJob): Job {
 
 export async function listJobs(c: Company): Promise<Job[]> {
   switch (c.board) {
+    case 'smartrecruiters': return (await import('./more.ts')).listSmartRecruiters(c);
+    case 'workable': return (await import('./more.ts')).listWorkable(c);
     case 'greenhouse': {
       const d = (await getJson(`https://boards-api.greenhouse.io/v1/boards/${c.slug}/jobs?content=true`)) as { jobs?: GhJob[] } | null;
       return (d?.jobs ?? []).map(j => fromGreenhouse(c, j));
@@ -119,6 +121,8 @@ export async function listJobs(c: Company): Promise<Job[]> {
       const d = (await getJson(`https://api.ashbyhq.com/posting-api/job-board/${c.slug}`)) as { jobs?: AshbyJob[] } | null;
       return (d?.jobs ?? []).filter(j => j.isListed !== false).map(j => fromAshby(c, j));
     }
+    default:
+      return [];
   }
 }
 
@@ -145,6 +149,12 @@ export function parseLink(raw: string): ParsedLink | null {
   if (host === 'jobs.lever.co' || host === 'jobs.eu.lever.co') {
     return parts[0] ? { board: 'lever', slug: parts[0], postingId: parts[1] ?? null } : null;
   }
+  if (host === 'jobs.smartrecruiters.com' || host === 'careers.smartrecruiters.com') {
+    return parts[0] ? { board: 'smartrecruiters', slug: parts[0], postingId: parts[1]?.split('-')[0] ?? null } : null;
+  }
+  if (host === 'apply.workable.com') {
+    return parts[0] ? { board: 'workable', slug: parts[0], postingId: parts[1] === 'j' ? parts[2] ?? null : null } : null;
+  }
   if (host === 'jobs.ashbyhq.com') {
     return parts[0] ? { board: 'ashby', slug: decodeURIComponent(parts[0]), postingId: parts[1] ?? null } : null;
   }
@@ -165,5 +175,7 @@ export async function jobFromLink(link: string, name?: string): Promise<Job | nu
     return j ? fromLever(c, j) : null;
   }
   const all = await listJobs(c);
-  return all.find(j => j.postingId === p.postingId) ?? null;
+  const found = all.find(j => j.postingId === p.postingId) ?? null;
+  if (found && !found.description) found.description = await (await import('./more.ts')).describe(found);
+  return found;
 }

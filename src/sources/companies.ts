@@ -28,6 +28,11 @@ export const DEFAULT_COMPANIES: Company[] = [
   c('Atlys', 'ashby', 'atlys', 'Bengaluru'),
   c('Hevo Data', 'lever', 'hevodata', 'Bengaluru'),
   c('Mindtickle', 'lever', 'mindtickle', 'Pune'),
+  // SmartRecruiters (Indian postings only)
+  c('Swiggy', 'smartrecruiters', 'Swiggy', 'Bengaluru'),
+  c('Freshworks', 'smartrecruiters', 'Freshworks', 'Chennai, Bengaluru'),
+  c('ServiceNow', 'smartrecruiters', 'ServiceNow', 'Hyderabad'),
+  c('Bosch', 'smartrecruiters', 'BoschGroup', 'Bengaluru, Coimbatore'),
   // Global companies with Indian offices
   c('Databricks', 'greenhouse', 'databricks', 'Bengaluru, San Francisco'),
   c('Stripe', 'greenhouse', 'stripe', 'Bengaluru, San Francisco'),

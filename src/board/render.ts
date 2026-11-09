@@ -11,7 +11,7 @@ export interface BoardData {
   /** Shown under the name and in the banner on the public demo. */
   demoNote?: { who: string; banner: string };
   applications: Pick<Application, 'handle' | 'company' | 'title' | 'url' | 'location' | 'status' | 'reason' | 'at' | 'fitScore' | 'note'>[];
-  queue: { handle: string; company: string; title: string; url: string; location: string; remote: boolean; score: number; oneLine: string; matches: string[]; gaps: string[]; postedAt: string | null; status: string }[];
+  queue: { handle: string; company: string; title: string; url: string; location: string; remote: boolean; score: number; oneLine: string; matches: string[]; gaps: string[]; postedAt: string | null; status: string; via: string | null }[];
   minFit: number;
 }
 
@@ -24,7 +24,7 @@ export function boardData(jobs: JobsFile, apps: Application[], profile: Profile 
       handle: q.handle, company: q.job.company, title: q.job.title, url: q.job.url,
       location: q.job.locations.join('; ') || (q.job.remote ? 'Remote' : ''), remote: q.job.remote,
       score: q.fit!.score, oneLine: q.fit!.oneLine, matches: q.fit!.matches, gaps: q.fit!.gaps,
-      postedAt: q.job.postedAt, status: q.status,
+      postedAt: q.job.postedAt, status: q.status, via: q.job.via ?? null,
     }));
   return {
     name: profile?.name ?? '',

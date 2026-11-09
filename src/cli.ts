@@ -11,6 +11,8 @@ import { find } from './jobs/find.ts';
 import { loadJobs, saveJobs, findJob, ranked, loadApplications, type QueuedJob } from './jobs/store.ts';
 import { allCompanies, addCompany } from './sources/companies.ts';
 import { jobFromLink, parseLink, listJobs } from './sources/boards.ts';
+import { jobFromAnyPage } from './sources/more.ts';
+import type { Job } from './sources/types.ts';
 import { judge } from './jobs/filter.ts';
 import { rankJob } from './jobs/rank.ts';
 import { tailor } from './tailor/write.ts';
@@ -56,7 +58,8 @@ const HELP = `aavedan · आवेदन — find jobs, tailor your resume, fill
   aavedan skip <a12 ...>           drop jobs from the queue
   aavedan status                   where you stand, and what Claude has cost
   aavedan board [--open]           your applications and queue as a page: me/board.html
-  aavedan add-company <board link> read another company's Greenhouse, Lever or Ashby board too
+  aavedan add-company <board link> read another company's Greenhouse, Lever, Ashby, SmartRecruiters or Workable board too
+  aavedan add-job <any link>       one posting from anywhere (a careers page, Naukri, LinkedIn): read, rate, queue
   aavedan answers                  the answers you gave forms, which are reused
   aavedan answer "<q>" "<a>"       save an answer to a question a form asked
 
@@ -75,9 +78,19 @@ function loadDotEnv() {
   }
 }
 
+/** One posting from its link: a known board's API when it is one, else the page's own job data. */
+async function readPosting(url: string): Promise<Job> {
+  const link = parseLink(url);
+  const job = link
+    ? await jobFromLink(url, allCompanies().find(c => c.board === link.board && c.slug === link.slug)?.name)
+    : await jobFromAnyPage(url);
+  if (!job || !job.title) throw new Error(`Could not read a job posting at ${url}. Some sites (Naukri, LinkedIn) block automated reading; open it, and if its Apply button leads to a company careers page, send that link instead.`);
+  return job;
+}
+
 function row(q: QueuedJob): string {
   const score = q.fit ? String(q.fit.score).padStart(3) : '  –';
-  return `${q.handle.padEnd(6)}${score}  ${truncate(q.job.company, 16).padEnd(16)} ${truncate(q.job.title, 46).padEnd(46)} ${truncate(q.job.locations.join('; ') || (q.job.remote ? 'Remote' : ''), 30)}`;
+  return `${q.handle.padEnd(6)}${score}  ${truncate(q.job.company, 16).padEnd(16)} ${truncate(q.job.title, 46).padEnd(46)} ${truncate(q.job.locations.join('; ') || (q.job.remote ? 'Remote' : ''), 30)}${q.job.via ? `  via ${q.job.via}` : ''}`;
 }
 
 const terminalIo = (): Io => ({
@@ -196,7 +209,7 @@ async function main() {
     case 'show': {
       const q = findJob(loadJobs(), positional[0] ?? '');
       if (!q) throw new Error('No such job. Use an id from aavedan list.');
-      say(`${q.job.company} · ${q.job.title}\n${q.job.locations.join('; ')}${q.job.remote ? ' (remote)' : ''}\n${q.job.url}\nstatus: ${q.status}${q.filtered ? ` · filtered: ${q.filtered}` : ''}`);
+      say(`${q.job.company} · ${q.job.title}\n${q.job.locations.join('; ')}${q.job.remote ? ' (remote)' : ''}\n${q.job.url}${q.job.via ? `  (listed on ${q.job.via})` : ''}\nstatus: ${q.status}${q.filtered ? ` · filtered: ${q.filtered}` : ''}`);
       if (q.fit) {
         say(`\nfit ${q.fit.score}/100${q.fit.eligible ? '' : ` · NOT ELIGIBLE: ${q.fit.eligibilityNote}`}\n${q.fit.oneLine}`);
         if (q.fit.matches.length) say('  + ' + q.fit.matches.join('\n  + '));
@@ -223,10 +236,8 @@ async function main() {
       const file = loadJobs();
       let targets: QueuedJob[] = [];
       for (const ref of positional) {
-        if (parseLink(ref)) {
-          const link = parseLink(ref)!;
-          const job = await jobFromLink(ref, allCompanies().find(c => c.board === link.board && c.slug === link.slug)?.name);
-          if (!job) throw new Error(`Could not read a posting at ${ref}`);
+        if (/^https?:\/\//.test(ref)) {
+          const job = await readPosting(ref);
           let q = file.jobs[job.id];
           if (!q) {
             const v = judge(job, profile);
@@ -302,6 +313,25 @@ async function main() {
       q.status = 'applied';
       saveJobs(f);
       say(`Recorded: ${q.job.company} · ${q.job.title} sent.`);
+      break;
+    }
+    case 'add-job': {
+      // A posting from anywhere (Naukri, LinkedIn, a careers page): read that one page, rate it, queue it.
+      needKey();
+      const ref = positional[0];
+      if (!ref || !/^https?:\/\//.test(ref)) throw new Error('Usage: aavedan add-job <posting link>');
+      const profile = loadProfile();
+      const job = await readPosting(ref);
+      const file = loadJobs();
+      let q = file.jobs[job.id];
+      if (!q) {
+        const v = judge(job, profile);
+        q = file.jobs[job.id] = { job, fit: null, filtered: v.pass ? null : v.reason, status: 'new', firstSeen: new Date().toISOString(), handle: `a${file.nextHandle++}` };
+      }
+      q.fit ??= await rankJob(claude, job, profile);
+      saveJobs(file);
+      say(`${q.handle}  fit ${q.fit.score}  ${job.company} · ${job.title}${q.filtered ? `  (your rules would drop it: ${q.filtered})` : ''}`);
+      say(`Next: aavedan show ${q.handle}, aavedan tailor ${q.handle}, or apply to it.`);
       break;
     }
     case 'skip': {
