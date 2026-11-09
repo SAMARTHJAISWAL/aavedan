@@ -49,6 +49,7 @@ A rehearsal (`apply` without `--send`) does everything except click Submit. This
 - **It never guesses what only you know.** That covers a past job at the company, a referral, a consent, a background check, or a salary figure you haven't given. It asks you once and remembers the answer for the next form.
 - **It never sends without your yes.** At the keyboard you approve each form. In Claude Code, you approve each job by name, in the chat.
 - **It never touches a human check.** If a board shows a CAPTCHA, the form waits in its tab for you.
+- **It never works around a board that says no.** Some boards (Lever, for one) reject applications from an automated browser. aavedan then **hands off**: the tailored resume goes to your Downloads folder, an answer sheet with a Copy button for every answer opens in your own browser next to the form, and you click Submit yourself. It remembers the board, so later applications there go straight to hand-off. `aavedan done <id>` records it as sent.
 
 ## How it is different
 
@@ -106,6 +107,7 @@ Open `claude` in the folder and type `/setup`. The skills run the same commands 
 | `… --send` | Send each complete form you approve |
 | `… --tailor --cover` | Tailor first, and attach a cover letter |
 | `… --send --no-input --yes` | Unattended (scripts, Claude Code): send what is complete, hold the rest |
+| `aavedan handoff <id>`, `aavedan done <id>` | Send it from your own browser with every answer ready; then record it as sent |
 | `aavedan answer "<question>" "<answer>"` | Save an answer that later forms reuse |
 | `aavedan add-company <board link>` | Read another company's Greenhouse, Lever or Ashby board |
 | `aavedan status`, `aavedan board --open` | Where you stand; the board page |
@@ -153,7 +155,7 @@ Text goes to the Claude API only for the calls above. Tests use a made-up candid
 ## Development
 
 ```bash
-npm test          # 58 tests: rules, board readers, fact check, and browser tests on local forms
+npm test          # 59 tests: rules, board readers, fact check, and browser tests on local forms
 npm run typecheck
 ```
 

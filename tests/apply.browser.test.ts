@@ -15,6 +15,8 @@ import { plainForm } from './fixtures/forms.ts';
 
 const home = fs.mkdtempSync(path.join(os.tmpdir(), 'aavedan-home-'));
 process.env.AAVEDAN_HOME = home;
+process.env.AAVEDAN_HANDOFF_DIR = path.join(home, 'downloads');
+process.env.AAVEDAN_NO_OPEN = '1';
 const { applyOne } = await import('../src/apply/run.ts');
 const { loadApplications } = await import('../src/jobs/store.ts');
 const { readJson } = await import('../src/util/store.ts');
@@ -135,5 +137,31 @@ describe('an application from start to finish', () => {
     expect(held.status).toBe('held');
     expect(held.reason).toMatch(/Bengaluru office.*required and empty/);
     expect(posted).toBeNull();
+  }, 60_000);
+
+  it('hands off to the person when the board rejects an automated submission, and never retries it', async () => {
+    fs.rmSync(paths.answers, { force: true });
+    posted = null;
+    const form = plainForm.replace('<form>', '<form method="post" action="/submit" enctype="multipart/form-data">');
+    let posts = 0;
+    server.removeAllListeners('request');
+    server.on('request', (req, res) => {
+      if (req.method === 'POST') { posts++; req.resume(); req.on('end', () => { res.writeHead(200, { 'content-type': 'text/html' }); res.end(form.replace('<form', '<div class="error-banner" role="alert">There was an error verifying your application. Please try again.</div><form')); }); return; }
+      res.writeHead(200, { 'content-type': 'text/html' }); res.end(form);
+    });
+    const out = await applyOne({ ctx, llm: fakeClaude, profile: ananya, q: job(), io: io(), send: true, tailorFirst: false, cover: false });
+    expect(out.status).toBe('handed-off');
+    expect(posts).toBe(1);
+    const rec = loadApplications()[0]!;
+    expect(rec.status).toBe('handed-off');
+    // The answer sheet carries what the form needs, and the resume is copied where a file picker finds it.
+    const sheet = fs.readFileSync(path.join(home, 'me', 'handoff', 'a1.html'), 'utf8');
+    expect(sheet).toContain('Ananya Rao');
+    expect(sheet).toContain('ananya.rao@example.com');
+    expect(fs.readdirSync(path.join(home, 'downloads'))).toEqual(['Ananya_Rao_Acme_Resume.pdf']);
+    // Next time this board is not even tried: the form is filled, read back, and handed off without a submit.
+    const again = await applyOne({ ctx, llm: fakeClaude, profile: ananya, q: job(), io: io(), send: true, tailorFirst: false, cover: false });
+    expect(again.status).toBe('handed-off');
+    expect(posts).toBe(1);
   }, 60_000);
 });

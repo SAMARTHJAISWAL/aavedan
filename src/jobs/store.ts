@@ -6,7 +6,7 @@ import fs from 'node:fs';
 import type { Job } from '../sources/types.ts';
 import type { Fit } from './rank.ts';
 
-export type JobStatus = 'new' | 'skipped' | 'held' | 'applied';
+export type JobStatus = 'new' | 'skipped' | 'held' | 'handed-off' | 'applied';
 
 export interface QueuedJob {
   job: Job;
@@ -26,7 +26,7 @@ export interface Application {
   title: string;
   url: string;
   location: string;
-  status: 'sent' | 'held' | 'rehearsed';
+  status: 'sent' | 'held' | 'rehearsed' | 'handed-off';
   /** For held forms: what only the user can do. */
   reason: string | null;
   at: string;
@@ -56,7 +56,13 @@ export function ranked(f: JobsFile, opts: { includeDone?: boolean } = {}): Queue
 export const loadApplications = () => readJson<Application[]>(paths.applications, []);
 
 export function recordApplication(a: Application): void {
-  const all = loadApplications().filter(x => !(x.jobId === a.jobId && x.status !== 'sent'));
+  const before = loadApplications();
+  // A run that stopped early has no answers; keep the last ones it had, so a hand-off can still use them.
+  if (!a.answers.length) {
+    const prev = before.find(x => x.jobId === a.jobId && x.answers.length);
+    if (prev) a = { ...a, answers: prev.answers, resume: a.resume ?? prev.resume, coverLetter: a.coverLetter ?? prev.coverLetter };
+  }
+  const all = before.filter(x => !(x.jobId === a.jobId && x.status !== 'sent'));
   all.unshift(a);
   writeJson(paths.applications, all);
   const head = ['at', 'status', 'company', 'title', 'location', 'fit', 'url', 'reason', 'resume', 'note'];

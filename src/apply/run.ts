@@ -14,6 +14,7 @@ import { shows } from './match.ts';
 import { paths, limits } from '../config.ts';
 import { readJson, writeJson } from '../util/store.ts';
 import { tailor } from '../tailor/write.ts';
+import { isBlocked, markBlocked, prepareHandoff, VERIFY_FAILED, type HandoffAnswer } from './handoff.ts';
 import { truncate } from '../util/text.ts';
 
 export interface Io {
@@ -27,7 +28,7 @@ export interface Io {
   interactive: boolean;
 }
 
-export type Outcome = { status: 'sent' | 'held' | 'rehearsed' | 'skipped' | 'quit'; reason: string | null };
+export type Outcome = { status: 'sent' | 'held' | 'rehearsed' | 'skipped' | 'handed-off' | 'quit'; reason: string | null };
 
 const loadMemory = () => readJson<Memory[]>(paths.answers, []);
 function remember(question: string, answer: string) {
@@ -76,7 +77,7 @@ export async function applyOne(opts: { ctx: BrowserContext; llm: Llm; profile: P
   let page: Page | undefined;
   // A form that waits for the person stays open in its tab; everything else is closed.
   let keepOpen = false;
-  const record = (status: 'sent' | 'held' | 'rehearsed', reason: string | null, steps: Step[], shown: Record<string, string>, resume: string | null, cover: string | null) =>
+  const record = (status: 'sent' | 'held' | 'rehearsed' | 'handed-off', reason: string | null, steps: Step[], shown: Record<string, string>, resume: string | null, cover: string | null) =>
     recordApplication({
       jobId: job.id, handle: q.handle, company: job.company, title: job.title, url: job.url,
       location: job.locations.join('; '), status, reason, at: new Date().toISOString(),
@@ -84,6 +85,17 @@ export async function applyOne(opts: { ctx: BrowserContext; llm: Llm; profile: P
       answers: steps.filter(s => s.field.kind !== 'file').map(s => ({ label: s.field.label, value: shown[s.field.id] ?? '' })),
       note: q.fit?.oneLine ?? '',
     });
+
+  const handOff = (reason: string, steps: Step[], shown: Record<string, string>, resume: string | null, cover: string | null): Outcome => {
+    const answers: HandoffAnswer[] = steps.filter(s => s.field.kind !== 'file').map(s => ({
+      label: s.field.label, required: s.field.required,
+      value: shown[s.field.id] || (s.action === 'answer' ? s.value.join('; ') : ''),
+    }));
+    const h = prepareHandoff({ profile, job, handle: q.handle, formUrl: job.applyUrl, answers, resume, cover, reason });
+    record('handed-off', 'waiting for you to submit it from your own browser', steps, shown, resume, cover);
+    io.log(`\n  → Handed off to your browser. ${reason}\n    Answer sheet: ${h.page}\n    Files: ${h.files.join(', ') || 'none'}\n    When you have sent it: aavedan done ${q.handle}`);
+    return { status: 'handed-off', reason };
+  };
 
   try {
     page = await newTab(ctx, formUrl(job));
@@ -153,6 +165,10 @@ export async function applyOne(opts: { ctx: BrowserContext; llm: Llm; profile: P
         io.log(issues.length ? `\n  Rehearsal: ${issues.length} thing(s) would hold this form:\n   - ${issues.join('\n   - ')}` : '\n  Rehearsal: every answer is on the page. Nothing was sent.');
         return { status: 'rehearsed', reason: issues[0] ?? null };
       }
+      if (opts.send && isBlocked(job.board)) {
+        // This board refused an automated submission before; prepare everything and let the person send it.
+        return handOff(`${job.board[0]!.toUpperCase()}${job.board.slice(1)} rejected an automated submission before, so this one is yours to send.`, steps, shown, resume, cover);
+      }
       if (issues.length && !io.interactive) {
         keepOpen = true;
         record('held', issues.join('; '), steps, shown, resume, cover);
@@ -178,6 +194,11 @@ export async function applyOne(opts: { ctx: BrowserContext; llm: Llm; profile: P
       const outcome = await waitForConfirmation(page, io);
       if (outcome === 'confirmed') { record('sent', null, steps, final, resume, cover); io.log('  ✓ Sent. The board confirmed it.'); return { status: 'sent', reason: null }; }
       const errors = await page.evaluate(readErrors).catch(() => [] as string[]);
+      if (errors.some(e => VERIFY_FAILED.test(e))) {
+        // The board's bot check said no. Never retry or work around it: hand it to the person's own browser.
+        markBlocked(job.board);
+        return handOff(`${job.company}'s form rejected the automated submission (“${errors.find(e => VERIFY_FAILED.test(e))}”). Nothing was received.`, steps, final, resume, cover);
+      }
       const reason = errors.length ? `the form answered: ${errors.join(' | ')}` : 'submitted, but no confirmation appeared — check the window before sending again';
       record('held', reason, steps, final, resume, cover);
       io.log(`  ✗ ${reason}`);
@@ -200,6 +221,8 @@ async function waitForConfirmation(page: Page, io: Io): Promise<'confirmed' | 'n
   while (Date.now() < deadline || waitedForHuman) {
     await page.waitForTimeout(1000);
     if (await confirmed(page)) return 'confirmed';
+    // A rejected bot check shows at once; no point waiting out the timeout.
+    if ((await page.evaluate(readErrors).catch(() => [] as string[])).some(e => VERIFY_FAILED.test(e))) return 'not';
     if (!waitedForHuman && (await humanCheckVisible(page))) {
       waitedForHuman = true;
       if (!io.interactive) return 'not';

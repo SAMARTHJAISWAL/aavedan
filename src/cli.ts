@@ -16,6 +16,8 @@ import { rankJob } from './jobs/rank.ts';
 import { tailor } from './tailor/write.ts';
 import { openBrowser } from './apply/browser.ts';
 import { applyOne, type Io } from './apply/run.ts';
+import { prepareHandoff } from './apply/handoff.ts';
+import { recordApplication } from './jobs/store.ts';
 import { writeBoard } from './board/render.ts';
 import { readJson, writeJson } from './util/store.ts';
 import { truncate } from './util/text.ts';
@@ -31,6 +33,8 @@ const say = (s = '') => process.stdout.write(s + '\n');
 
 async function prompt(q: string): Promise<string> {
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  // Ctrl+C at a question stops aavedan cleanly; the browser closes with the process.
+  rl.on('SIGINT', () => { rl.close(); process.stdout.write('\nStopped. Nothing more was sent.\n'); process.exit(130); });
   try { return (await rl.question(q)).trim(); } finally { rl.close(); }
 }
 
@@ -47,6 +51,8 @@ const HELP = `aavedan · आवेदन — find jobs, tailor your resume, fill
            [--no-input --yes]      for scripts and Claude Code: send what is complete, hold the rest
   aavedan apply --count 5 --send   the five best jobs in the queue
            [--tailor] [--cover]    tailor the resume (and write a cover letter) for each first
+  aavedan handoff <a12>            send it yourself: files in Downloads, an answer sheet, the form, all opened
+  aavedan done <a12>               record a job you sent from your own browser
   aavedan skip <a12 ...>           drop jobs from the queue
   aavedan status                   where you stand, and what Claude has cost
   aavedan board [--open]           your applications and queue as a page: me/board.html
@@ -249,6 +255,7 @@ async function main() {
           const f2 = loadJobs();
           const live = f2.jobs[q.job.id];
           if (live && out.status === 'sent') live.status = 'applied';
+          else if (live && out.status === 'handed-off') live.status = 'handed-off';
           else if (live && (out.status === 'held' || out.status === 'skipped')) live.status = 'held';
           saveJobs(f2);
           if (out.status === 'quit') break;
@@ -259,6 +266,42 @@ async function main() {
         await ctx.close().catch(() => {});
       }
       say(`\n${Object.entries(tally).map(([k, v]) => `${v} ${k}`).join(' · ')}. Records: me/applications.csv`);
+      break;
+    }
+    case 'handoff': {
+      // Prepare a job for sending from your own browser: files in Downloads, an answer sheet, the form.
+      const profile = loadProfile();
+      const f = loadJobs();
+      const q = findJob(f, positional[0] ?? '');
+      if (!q) throw new Error('Usage: aavedan handoff <id>. Rehearse it first with aavedan apply <id>.');
+      const rec = loadApplications().find(a => a.jobId === q.job.id && a.answers.length);
+      if (!rec) throw new Error(`No rehearsed answers for ${q.handle} yet. Run: aavedan apply ${q.handle}`);
+      const h = prepareHandoff({
+        profile, job: q.job, handle: q.handle, formUrl: q.job.applyUrl,
+        answers: rec.answers.map(a => ({ ...a, required: false })),
+        resume: rec.resume, cover: rec.coverLetter, reason: 'Prepared from your last rehearsal.',
+      });
+      recordApplication({ ...rec, status: 'handed-off', reason: 'waiting for you to submit it from your own browser', at: new Date().toISOString() });
+      q.status = 'handed-off';
+      saveJobs(f);
+      say(`Opened the answer sheet and the form in your browser.\n  Answer sheet: ${h.page}\n  Files: ${h.files.join(', ') || 'none'}\nWhen you have sent it: aavedan done ${q.handle}`);
+      break;
+    }
+    case 'done': {
+      // You sent it yourself (hand-off): record it as sent.
+      const f = loadJobs();
+      const q = findJob(f, positional[0] ?? '');
+      if (!q) throw new Error('Usage: aavedan done <id>');
+      const rec = loadApplications().find(a => a.jobId === q.job.id);
+      recordApplication({
+        jobId: q.job.id, handle: q.handle, company: q.job.company, title: q.job.title, url: q.job.url,
+        location: q.job.locations.join('; '), status: 'sent', reason: null, at: new Date().toISOString(),
+        fitScore: q.fit?.score ?? null, resume: rec?.resume ?? null, coverLetter: rec?.coverLetter ?? null,
+        answers: rec?.answers ?? [], note: 'sent by you from your own browser',
+      });
+      q.status = 'applied';
+      saveJobs(f);
+      say(`Recorded: ${q.job.company} · ${q.job.title} sent.`);
       break;
     }
     case 'skip': {
@@ -273,7 +316,7 @@ async function main() {
       const usage = fs.existsSync(paths.usage) ? fs.readFileSync(paths.usage, 'utf8').trim().split('\n').filter(Boolean).map(l => JSON.parse(l) as { usd: number; at: string; label: string }) : [];
       const today = new Date().toISOString().slice(0, 10);
       const sent = apps.filter(a => a.status === 'sent');
-      const held = apps.filter(a => a.status === 'held');
+      const held = apps.filter(a => a.status === 'held' || a.status === 'handed-off');
       const minFit = fs.existsSync(paths.profile) ? loadProfile().preferences.minFit : 70;
       say(`Sent: ${sent.length} (${sent.filter(a => a.at.startsWith(today)).length} today)`);
       say(`Waiting for you: ${held.length}${held.length ? '\n' + held.slice(0, 8).map(a => `  ${a.handle} ${a.company} · ${truncate(a.title, 40)} — ${truncate(a.reason ?? '', 80)}`).join('\n') : ''}`);

@@ -84,6 +84,7 @@ code, .cmd { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 
 .chip.sent { background: var(--sent-soft); color: var(--sent); }
 .chip.held { background: var(--held-soft); color: var(--held); }
 .chip.rehearsed { background: var(--rehearsed-soft); color: var(--rehearsed); }
+.chip.handed-off { background: var(--accent-soft); color: var(--accent); }
 table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
 th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 14px; }
 th { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; }
@@ -136,7 +137,7 @@ const store = { get(k, d) { try { return JSON.parse(localStorage.getItem('aaveda
 const apps = DATA.applications;
 const sent = apps.filter(a => a.status === 'sent');
 // Waiting for the person: held forms, and rehearsals that found something only they can answer.
-const held = apps.filter(a => a.status === 'held' || (a.status === 'rehearsed' && a.reason));
+const held = apps.filter(a => a.status === 'held' || a.status === 'handed-off' || (a.status === 'rehearsed' && a.reason));
 const rehearsed = apps.filter(a => a.status === 'rehearsed');
 const queue = DATA.queue.filter(q => q.status === 'new');
 // The demo opens on the queue with a lower bar, so visitors see what ranking looks like.
@@ -167,7 +168,7 @@ function renderTools() {
   $('#tools').innerHTML = `<input type="search" id="q" placeholder="Search company, role or place" value="${esc(state.q)}" aria-label="Search">` +
     (state.tab === 'queue'
       ? `<label>Fit ≥ <b id="fv">${state.minFit}</b><input type="range" id="fit" min="0" max="100" step="5" value="${state.minFit}"></label><label><input type="checkbox" id="rem" ${state.remote ? 'checked' : ''}> Remote only</label>`
-      : `<label>Status <select id="st" class="btn">${['all', 'sent', 'held', 'rehearsed'].map(s => `<option ${state.status === s ? 'selected' : ''}>${s}</option>`).join('')}</select></label>`);
+      : `<label>Status <select id="st" class="btn">${['all', 'sent', 'handed-off', 'held', 'rehearsed'].map(s => `<option ${state.status === s ? 'selected' : ''}>${s}</option>`).join('')}</select></label>`);
   $('#q').addEventListener('input', e => { state.q = e.target.value; renderView(); });
   $('#fit')?.addEventListener('input', e => { state.minFit = +e.target.value; $('#fv').textContent = state.minFit; store.set('minFit', state.minFit); renderView(); });
   $('#rem')?.addEventListener('change', e => { state.remote = e.target.checked; renderView(); });
@@ -183,7 +184,7 @@ function renderView() {
       <div class="need"><div class="t">${esc(a.company)} · ${esc(a.title)}</div>
       <p>${esc(a.reason || 'Waiting for you.')}</p>
       <a class="btn" href="${esc(safeUrl(a.url))}" target="_blank" rel="noopener">Open posting</a>
-      <button class="btn" data-copy="aavedan apply ${esc(a.handle)}${a.status === 'held' ? ' --send' : ''}">Copy: <span class="cmd">aavedan apply ${esc(a.handle)}${a.status === 'held' ? ' --send' : ''}</span></button></div>`).join('')}</div>`
+      ${(c => `<button class="btn" data-copy="${c}">Copy: <span class="cmd">${c}</span></button>`)(a.status === 'handed-off' ? `aavedan done ${esc(a.handle)}` : `aavedan apply ${esc(a.handle)}${a.status === 'held' ? ' --send' : ''}`)}</div>`).join('')}</div>`
       : `<div class="empty">Nothing waits for you.</div>`;
     return;
   }

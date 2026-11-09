@@ -23,6 +23,8 @@ export async function openBrowser(opts: { headless?: boolean } = {}): Promise<Br
       channel,
       headless: opts.headless ?? false,
       viewport: null,
+      // Keep Chrome's own sandbox on (Playwright turns it off by default, which shows a warning bar).
+      chromiumSandbox: true,
       args: ['--window-size=1280,900'],
     });
   try {
