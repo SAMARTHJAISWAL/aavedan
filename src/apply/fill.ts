@@ -46,8 +46,11 @@ async function readComboOptions(page: Page, f: Field): Promise<void> {
     await input.click({ timeout: 4000 });
     await page.waitForTimeout(350);
     const opts = await visibleOptions(page);
-    f.options = [...new Set(opts.map(o => o.text))].slice(0, 300);
-    f.searchable = f.options.length === 0;
+    const all = [...new Set(opts.map(o => o.text))];
+    // A long list (schools, countries, employers) is searched by typing, like a person would; its first
+    // screenful says nothing about whether the right answer is in it.
+    f.searchable = all.length === 0 || all.length > 80;
+    f.options = f.searchable ? [] : all;
   } catch {
     f.searchable = true;
   } finally {
