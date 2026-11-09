@@ -1,0 +1,30 @@
+{
+  "name": "aavedan",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Finds jobs in India, remote and worldwide, ranks them against your resume, tailors your resume, fills the application form in a Chrome window you can watch, checks every answer, and sends only what you approve.",
+  "license": "MIT",
+  "author": "Samarth Jaiswal",
+  "type": "module",
+  "bin": {
+    "aavedan": "bin/aavedan.js"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "demo:board": "node scripts/demo-board.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.6.0",
+    "playwright-core": "^1.65.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "^5.9.3",
+    "vitest": "^5.1.0"
+  }
+}

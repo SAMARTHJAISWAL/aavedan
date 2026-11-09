@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - name: Tests (the browser tests use the runner's Google Chrome)
+        run: npm test
+      - name: The CLI starts
+        run: node bin/aavedan.js help
+      - name: Build the demo board
+        run: node scripts/demo-board.ts
