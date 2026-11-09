@@ -71,6 +71,11 @@ describe('judge', () => {
     expect(judge(job({ title: 'Accounts Payable Manager' }), ananya).reason).toBe('not a role you are looking for');
     expect(judge(job({ postedAt: '2020-01-01T00:00:00Z' }), ananya).reason).toMatch(/^posted/);
   });
+  it('accepts a posting that names India but no city, for someone open to remote work in India', () => {
+    expect(judge(job({ locations: ['India'] }), ananya).pass).toBe(true);
+    const officeOnly = { ...ananya, preferences: { ...ananya.preferences, remoteIndia: false } };
+    expect(judge(job({ locations: ['India'] }), officeOnly).pass).toBe(false);
+  });
   it('accepts NCR offices for a Delhi NCR preference', () => {
     expect(judge(job({ locations: ['Noida, Uttar Pradesh'] }), ananya).pass).toBe(true);
   });

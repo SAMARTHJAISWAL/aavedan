@@ -16,6 +16,8 @@ export const DEFAULT_COMPANIES: Company[] = [
   c('Pocket FM', 'lever', 'pocketfm', 'Bengaluru'),
   c('Sarvam AI', 'ashby', 'sarvam', 'Bengaluru'),
   c('Atlan', 'ashby', 'atlan', 'Remote'),
+  c('Shift', 'ashby', 'shift', 'Bengaluru'),
+  c('Bureau', 'ashby', 'bureau', 'Bengaluru'),
   c('Groww', 'greenhouse', 'groww', 'Bengaluru'),
   c('InMobi', 'greenhouse', 'inmobi', 'Bengaluru'),
   c('Glance', 'greenhouse', 'glance', 'Bengaluru'),

@@ -151,6 +151,8 @@ export function placeOk(place: Place, profile: Profile): boolean {
   if (place.remote === 'global' && (prefs.remoteGlobal || prefs.remoteIndia)) return true;
   if (place.remote === 'restricted' && place.countries.some(canWorkIn)) return true;
   if (place.indiaCities.some(c => wanted.has(c)) || (anyIndia && place.indiaAny)) return true;
+  // "India" with no city usually means any office or remote; worth a look for anyone open to remote in India.
+  if (place.indiaAny && place.indiaCities.length === 0 && place.remote === 'none' && prefs.remoteIndia) return true;
   if (place.remote === 'none' && place.countries.some(canWorkIn)) return true;
   return false;
 }
