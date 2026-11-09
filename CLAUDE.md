@@ -12,7 +12,8 @@ Skills in `.claude/skills/` drive the CLI (`node bin/aavedan.js …`); the CLI i
 - Nothing is sent without the person's yes for that job. Unattended runs send only with `--yes`, and only forms
   whose every answer was read back from the page.
 - Human checks (CAPTCHAs) are left to the person. Never add code that solves, hides from or works around them.
-- Everything about the user lives in `me/` (git-ignored). Tests and the demo use the made-up candidate in
+- Everything about the user lives in `me/` (git-ignored). The live demo is the author's own search (name, ranked jobs,
+  rehearsals only: never contact details or CTC). Tests use the made-up candidate in
   `tests/fixtures/profile.ts`, never real personal data.
 - Every Claude call goes through `src/llm.ts` and returns zod-validated JSON. Structured outputs do not enforce
   array sizes or number ranges, so clamp them in code, not in the schema.

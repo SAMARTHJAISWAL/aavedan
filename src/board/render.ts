@@ -8,6 +8,8 @@ export interface BoardData {
   name: string;
   generatedAt: string;
   demo: boolean;
+  /** Shown under the name and in the banner on the public demo. */
+  demoNote?: { who: string; banner: string };
   applications: Pick<Application, 'handle' | 'company' | 'title' | 'url' | 'location' | 'status' | 'reason' | 'at' | 'fitScore' | 'note'>[];
   queue: { handle: string; company: string; title: string; url: string; location: string; remote: boolean; score: number; oneLine: string; matches: string[]; gaps: string[]; postedAt: string | null; status: string }[];
   minFit: number;

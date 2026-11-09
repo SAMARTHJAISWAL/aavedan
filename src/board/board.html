@@ -142,8 +142,9 @@ const queue = DATA.queue.filter(q => q.status === 'new');
 // The demo opens on the queue with a lower bar, so visitors see what ranking looks like.
 let state = { tab: store.get('tab', held.length && !DATA.demo ? 'needs' : 'queue'), q: '', minFit: store.get('minFit', DATA.demo ? 40 : DATA.minFit), remote: false, status: 'all' };
 
-$('#who').innerHTML = DATA.name ? `<b>${esc(DATA.name)}</b>${DATA.demo ? 'a made-up candidate' : 'your board'}` : '';
-if (DATA.demo) $('#demo').innerHTML = `<p class="demo">This is a demo with a made-up candidate and real job postings. aavedan runs on your own computer: <a href="https://github.com/SAMARTHJAISWAL/aavedan">see how to set it up</a>.</p>`;
+const note = DATA.demoNote ?? { who: 'a made-up candidate', banner: 'This is a demo with a made-up candidate and real job postings.' };
+$('#who').innerHTML = DATA.name ? `<b>${esc(DATA.name)}</b>${DATA.demo ? esc(note.who) : 'your board'}` : '';
+if (DATA.demo) $('#demo').innerHTML = `<p class="demo">${esc(note.banner)} aavedan runs on your own computer: <a href="https://github.com/SAMARTHJAISWAL/aavedan">see how to set it up</a>.</p>`;
 $('#gen').textContent = `Updated ${new Date(DATA.generatedAt).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })}`;
 
 // Applications sent in each of the last 8 weeks.

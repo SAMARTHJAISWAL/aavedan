@@ -1,1006 +1,1009 @@
 {
- "name": "Ananya Rao",
- "generatedAt": "2026-11-09T10:37:57.563Z",
+ "name": "Samarth Jaiswal",
+ "generatedAt": "2026-11-09T10:59:59.763Z",
  "demo": true,
  "applications": [
   {
-   "handle": "a14",
-   "company": "Stripe",
-   "title": "Software Engineer, New Grad",
-   "url": "https://stripe.com/jobs/search?gh_jid=8130876",
-   "location": "Bangalore; Bengaluru, Karnataka, India",
-   "status": "rehearsed",
-   "reason": "“Do you have an active offer deadline or another recruiting-…” is required and empty; “When are you available to start full-time?” is required and empty",
-   "at": "2026-11-09T10:34:42.768Z",
-   "fitScore": 45,
-   "note": "Stripe builds programmable financial infrastructure for internet businesses to start and scale."
-  },
-  {
-   "handle": "a48",
+   "handle": "a4",
    "company": "CRED",
-   "title": "cloud security engineer",
-   "url": "https://jobs.lever.co/cred/9a746e68-0858-4190-9144-54b19a2cbf2c",
+   "title": "fraud analyst",
+   "url": "https://jobs.lever.co/cred/913a6616-78c9-4ca3-8c92-67ddea8a80df",
    "location": "bengaluru; India",
    "status": "rehearsed",
    "reason": null,
-   "at": "2026-11-09T10:32:53.403Z",
-   "fitScore": 45,
-   "note": "CRED is a members-only credit-rewards community built around financial trustworthiness."
+   "at": "2026-11-09T10:59:35.697Z",
+   "fitScore": 62,
+   "note": "CRED runs a trust-based credit rewards community for India's creditworthy members."
   },
   {
-   "handle": "a18",
-   "company": "GitLab",
-   "title": "Intermediate Backend Engineer, India",
-   "url": "https://job-boards.greenhouse.io/gitlab/jobs/8775507002",
-   "location": "Bangalore, India",
-   "status": "rehearsed",
-   "reason": "“Are you subject to any employment agreements and/or post-em…” is required and empty; “Have you previously worked at or consulted for GitLab?” is required and empty",
-   "at": "2026-11-09T10:31:10.711Z",
-   "fitScore": 72,
-   "note": "GitLab is a DevSecOps platform helping organizations build, secure, and ship software faster."
-  },
-  {
-   "handle": "a7",
-   "company": "Sarvam AI",
-   "title": "Infrastructure Engineer",
-   "url": "https://jobs.ashbyhq.com/sarvam/f09b6a35-e2d1-4833-8bc5-2b495991d882",
-   "location": "Bengaluru; India",
+   "handle": "a3",
+   "company": "Paytm",
+   "title": "Risk Analyst | Exp - 1 to 3 Yrs",
+   "url": "https://jobs.lever.co/paytm/beb24813-6250-46c4-b8af-63aae1f2bbe6",
+   "location": "Bangalore, Karnataka; Noida, Uttar Pradesh; Gurugram, Haryana; India",
    "status": "rehearsed",
    "reason": null,
-   "at": "2026-11-09T10:28:17.644Z",
+   "at": "2026-11-09T10:59:27.166Z",
+   "fitScore": 62,
+   "note": "Paytm is India's mobile payments and digital lending platform serving millions of users."
+  },
+  {
+   "handle": "a36",
+   "company": "GitLab",
+   "title": "Intermediate Data Engineer",
+   "url": "https://job-boards.greenhouse.io/gitlab/jobs/8924923002",
+   "location": "Bangalore, India; India",
+   "status": "rehearsed",
+   "reason": "“Have you previously worked at or consulted for GitLab?” is required and empty; “Are you subject to any employment agreements and/or post-em…” is required and empty",
+   "at": "2026-11-09T10:58:59.930Z",
    "fitScore": 72,
-   "note": "Builds Indic-language AI products and the cloud infrastructure that runs them."
+   "note": "GitLab is a DevSecOps platform for building, securing and shipping software faster."
   }
  ],
  "queue": [
   {
-   "handle": "a7",
-   "company": "Sarvam AI",
-   "title": "Infrastructure Engineer",
-   "url": "https://jobs.ashbyhq.com/sarvam/f09b6a35-e2d1-4833-8bc5-2b495991d882",
-   "location": "Bengaluru; India",
-   "remote": false,
-   "score": 72,
-   "oneLine": "Builds Indic-language AI products and the cloud infrastructure that runs them.",
-   "matches": [
-    "Go and Python backend services on PostgreSQL and Kafka at Paysetu",
-    "Kubernetes and Docker listed; AWS in skills",
-    "Python job automating nightly reconciliation at Kitebird Labs",
-    "Scripting and Git in Go and Python projects like tinyqueue"
-   ],
-   "gaps": [
-    "Only one year of experience; posting asks for 2–5 years",
-    "No stated Terraform or Prometheus/Grafana experience",
-    "No demonstrated AI agent or LLM automation work",
-    "Kubernetes deployment and debugging on a cluster not clearly shown"
-   ],
-   "postedAt": "2026-10-26T06:29:28.519+00:00",
-   "status": "new"
-  },
-  {
-   "handle": "a18",
-   "company": "GitLab",
-   "title": "Intermediate Backend Engineer, India",
-   "url": "https://job-boards.greenhouse.io/gitlab/jobs/8775507002",
-   "location": "Bangalore, India",
-   "remote": false,
-   "score": 72,
-   "oneLine": "GitLab is a DevSecOps platform helping organizations build, secure, and ship software faster.",
-   "matches": [
-    "Go backend services with PostgreSQL at Paysetu, refunds service",
-    "Kafka event-driven work with idempotent consumers",
-    "Latency optimization: p95 cut from 900 ms to 210 ms",
-    "Python reconciliation job; Docker and Kubernetes listed in skills"
-   ],
-   "gaps": [
-    "Only one year of professional experience versus intermediate expectation",
-    "No Ruby/Rails experience stated, though posting accepts other languages",
-    "No stated test coverage practice or code review experience",
-    "No stated observability tooling such as metrics, traces, or dashboards"
-   ],
-   "postedAt": "2026-09-02T14:50:52-04:00",
-   "status": "new"
-  },
-  {
-   "handle": "a22",
-   "company": "GitLab",
-   "title": "Software Engineer, Delivery : Release",
-   "url": "https://job-boards.greenhouse.io/gitlab/jobs/8916232002",
-   "location": "Bangalore, India; India",
-   "remote": false,
-   "score": 68,
-   "oneLine": "GitLab is a DevSecOps platform used by many large enterprises to ship software.",
-   "matches": [
-    "Go backend experience: built refunds service in Go on PostgreSQL",
-    "Large-scale throughput: 40,000 refunds daily, payouts API latency work",
-    "Kafka and CI-adjacent reliability work with idempotent consumers",
-    "Observability-adjacent: crash recovery and fault-injection testing in tinyqueue"
-   ],
-   "gaps": [
-    "Mandatory Ruby or Go met, but Ruby not shown; Go is covered",
-    "Only one year of experience, below typical seniority for this role",
-    "No stated CI/CD pipeline or release tooling experience",
-    "No evidence of infrastructure as code or release management work"
-   ],
-   "postedAt": "2026-10-28T00:26:37-04:00",
-   "status": "new"
-  },
-  {
-   "handle": "a19",
-   "company": "GitLab",
-   "title": "Intermediate Backend Engineer , Security Factory",
-   "url": "https://job-boards.greenhouse.io/gitlab/jobs/8890971002",
-   "location": "Bangalore, India; India",
-   "remote": false,
-   "score": 66,
-   "oneLine": "GitLab is a DevSecOps platform used by millions to build and secure software.",
-   "matches": [
-    "Go backend services on PostgreSQL and Kafka in production",
-    "Built Go refunds service handling 40,000 refunds daily",
-    "Python data job reconciling 2 million rows nightly",
-    "Go persistent job queue with write-ahead log recovery"
-   ],
-   "gaps": [
-    "No Rust experience stated; engine is written in Rust",
-    "No static analysis, taint or data-flow analysis experience shown",
-    "No SAST, CWE/OWASP or security tooling background shown",
-    "Only one year of experience; role is intermediate level"
-   ],
-   "postedAt": "2026-11-04T14:15:55-05:00",
-   "status": "new"
-  },
-  {
-   "handle": "a20",
+   "handle": "a36",
    "company": "GitLab",
    "title": "Intermediate Data Engineer",
    "url": "https://job-boards.greenhouse.io/gitlab/jobs/8924923002",
    "location": "Bangalore, India; India",
    "remote": false,
-   "score": 66,
-   "oneLine": "GitLab is a DevSecOps platform used by millions to build and secure software.",
+   "score": 72,
+   "oneLine": "GitLab is a DevSecOps platform for building, securing and shipping software faster.",
    "matches": [
-    "Python services and pipelines in production at Paysetu",
-    "Strong SQL and PostgreSQL experience from refunds and payouts work",
-    "Kafka event processing with idempotent consumers at Paysetu",
-    "Remote-friendly; India work rights for Bangalore location"
+    "1.5 years building SQL data models and ETL automation at AB InBev",
+    "Automated SQL ETL pipeline feeding Power BI, saving 2,400+ mins monthly",
+    "Hands-on SQL and Python (Pandas, NumPy) data work",
+    "Dimensional/star schema data modeling experience listed in skills"
    ],
    "gaps": [
-    "Only one year of experience versus intermediate data engineer level",
-    "No Snowflake, dbt, or Airflow experience shown",
-    "No Kimball dimensional modeling or warehouse-focused work stated",
-    "No SaaS source integrations like Salesforce or Fivetran shown"
+    "No Snowflake, Airflow, dbt, or Fivetran experience shown",
+    "No evidence of API ingestion from SaaS sources like Salesforce or Zuora",
+    "Limited production experience at intermediate level; 1.5 years total",
+    "No Kubernetes, Docker, or CI/CD ownership shown"
    ],
    "postedAt": "2026-11-02T01:44:11-05:00",
    "status": "new"
   },
   {
-   "handle": "a6",
-   "company": "Sarvam AI",
-   "title": "Software Engineer - Model API Platform",
-   "url": "https://jobs.ashbyhq.com/sarvam/0371342b-5cb8-487b-9310-4d0eb5b37f47",
-   "location": "Bengaluru; India",
+   "handle": "a3",
+   "company": "Paytm",
+   "title": "Risk Analyst | Exp - 1 to 3 Yrs",
+   "url": "https://jobs.lever.co/paytm/beb24813-6250-46c4-b8af-63aae1f2bbe6",
+   "location": "Bangalore, Karnataka; Noida, Uttar Pradesh; Gurugram, Haryana; India",
    "remote": false,
    "score": 62,
-   "oneLine": "Builds sovereign AI platform and model APIs for India's enterprises and public institutions.",
+   "oneLine": "Paytm is India's mobile payments and digital lending platform serving millions of users.",
    "matches": [
-    "Built Go refunds service handling 40,000 refunds daily on PostgreSQL",
-    "Cut payouts API p95 latency 900ms to 210ms",
-    "Moved settlement events to Kafka with idempotent consumers",
-    "Strong Go, Python, PostgreSQL, Kafka, Redis skills listed"
+    "1.5 years experience at AB InBev, within 1-3 year range",
+    "Strong SQL and Python data manipulation with Pandas",
+    "Built KRI-style executive dashboards and validated reporting for Finance leadership",
+    "Hands-on ML experience with CNN model and GenAI extraction pipelines"
    ],
    "gaps": [
-    "Only one year experience versus 4-6 required",
-    "No voice AI or real-time audio experience shown",
-    "No evidence of daily AI tooling use with concrete examples",
-    "No clear on-call ownership of an end-to-end service under load"
+    "No credit risk, lending, or fintech domain experience stated",
+    "No evidence of implementing credit policies or underwriting rules",
+    "No stated experience with regulatory compliance in lending",
+    "Education is B.Tech from MIT Manipal, not NIT/BITS or listed reputed institution"
    ],
-   "postedAt": "2026-10-13T07:12:53.480+00:00",
+   "postedAt": "2026-09-01T08:04:59.389Z",
    "status": "new"
   },
   {
-   "handle": "a17",
-   "company": "GitLab",
-   "title": "Intermediate Backend Engineer, Authorization",
-   "url": "https://job-boards.greenhouse.io/gitlab/jobs/8905402002",
-   "location": "Bangalore, India; India",
+   "handle": "a4",
+   "company": "CRED",
+   "title": "fraud analyst",
+   "url": "https://jobs.lever.co/cred/913a6616-78c9-4ca3-8c92-67ddea8a80df",
+   "location": "bengaluru; India",
    "remote": false,
    "score": 62,
-   "oneLine": "GitLab is a DevSecOps platform for software development, security, and compliance.",
+   "oneLine": "CRED runs a trust-based credit rewards community for India's creditworthy members.",
    "matches": [
-    "Go and Python backend services on PostgreSQL and Kafka at Paysetu",
-    "Built refunds service handling 40,000 refunds daily",
-    "Cut payouts API p95 latency via batching ledger writes",
-    "Persistent job queue project with crash recovery tests"
+    "SQL data modeling and ETL pipelines at AB InBev, 1.5 years",
+    "Python experience with Pandas and NumPy in pricing analysis",
+    "Analytical work surfacing pricing and market anomalies via SQL and Python",
+    "GenAI extraction pipeline project using Python and GPT"
    ],
    "gaps": [
-    "No Ruby on Rails experience stated; role requires 2-4 years",
-    "No authorization or RBAC/fine-grained permissions experience shown",
-    "One year of experience versus intermediate-level expectation",
-    "No GraphQL or REST API authorization patterns shown"
+    "No demonstrated fraud detection or risk domain experience",
+    "No evidence of adversarial or security-focused analysis",
+    "Limited hands-on ML modeling beyond a 2023 internship",
+    "Posting requires 1-2 years; candidate has 1.5 years, which fits"
    ],
-   "postedAt": "2026-11-03T05:30:08-05:00",
+   "postedAt": "2026-11-05T08:36:05.818Z",
    "status": "new"
   },
   {
-   "handle": "a35",
-   "company": "Supabase",
-   "title": "Software Engineer - Spark",
-   "url": "https://jobs.ashbyhq.com/supabase/b75ba81e-54cc-4393-a575-bc41776b0113",
-   "location": "Remote, Global",
-   "remote": false,
-   "score": 62,
-   "oneLine": "Supabase is an open-source Postgres development platform offering database, auth, storage, and realtime services.",
-   "matches": [
-    "Shipped production Go services on PostgreSQL at Paysetu",
-    "Built Kafka event pipelines with idempotent consumers",
-    "Tuned API latency: p95 from 900ms to 210ms",
-    "Built persistent job queue with WAL crash recovery"
-   ],
-   "gaps": [
-    "No production Rust experience stated in profile",
-    "Only one year of experience; role is senior-leaning",
-    "No stated work with SQLite or Turso internals",
-    "No evidence of open-source maintenance or Supabase stack use"
-   ],
-   "postedAt": "2026-07-17T10:25:35.625+00:00",
-   "status": "new"
-  },
-  {
-   "handle": "a43",
-   "company": "Supabase",
-   "title": "SDK Engineer - Python",
-   "url": "https://jobs.ashbyhq.com/supabase/b65287c7-2071-4bc6-8717-58c090e2a372",
-   "location": "Remote, Global",
-   "remote": true,
-   "score": 62,
-   "oneLine": "Postgres development platform offering database, auth, storage, realtime, and edge functions.",
-   "matches": [
-    "Python backend experience via Kitebird reconciliation job",
-    "Async-adjacent work: Kafka consumers with idempotent handling at Paysetu",
-    "Strong PostgreSQL usage: refunds service at 40,000 daily refunds",
-    "Open-source project tinyqueue shows self-directed library-style work"
-   ],
-   "gaps": [
-    "Only one year experience; role expects deep library-authoring history",
-    "No evidence of published Python library or public API maintenance",
-    "No stated depth in modern Python typing, generics, or strict type checking",
-    "No evidence of asyncio or realtime websocket work"
-   ],
-   "postedAt": "2026-10-16T15:41:37.459+00:00",
-   "status": "new"
-  },
-  {
-   "handle": "a12",
-   "company": "Observe.AI",
-   "title": "AI Agent Engineer",
-   "url": "https://www.observe.ai/position?gh_jid=5432596008",
-   "location": "Bengaluru ; Bengaluru, Karnataka, India",
-   "remote": false,
-   "score": 55,
-   "oneLine": "AI Agents platform automating customer experience and frontline support for enterprise brands.",
-   "matches": [
-    "Bachelor's in Computer Science, B.Tech CSE 2025 from PES University",
-    "Python programming experience for scripting and integrations",
-    "Kafka and API-driven backend work at Paysetu",
-    "Based in Bengaluru, matching on-site location"
-   ],
-   "gaps": [
-    "No prompt design or LLM application experience shown",
-    "No telephony or SIP/CCaaS integration experience listed",
-    "No RAG, vector DB, or LangChain-style orchestration shown",
-    "Only one year experience, below the 1-5 year range with customer-facing delivery"
-   ],
-   "postedAt": "2026-09-23T06:13:40-04:00",
-   "status": "new"
-  },
-  {
-   "handle": "a14",
+   "handle": "a25",
    "company": "Stripe",
    "title": "Software Engineer, New Grad",
    "url": "https://stripe.com/jobs/search?gh_jid=8130876",
    "location": "Bangalore; Bengaluru, Karnataka, India",
    "remote": false,
-   "score": 45,
-   "oneLine": "Stripe builds programmable financial infrastructure for internet businesses to start and scale.",
+   "score": 62,
+   "oneLine": "Stripe builds programmable financial infrastructure and payment APIs for businesses worldwide.",
    "matches": [
-    "Degree B.Tech CSE 2025 from PES University, fits grad window",
-    "Go and PostgreSQL production experience at Paysetu",
-    "Built refunds service handling 40,000 refunds daily",
-    "Persistent job queue project with crash recovery"
+    "Bachelor's in IT from MIT Manipal, graduated 2025",
+    "1.5 years professional data engineering experience at AB InBev",
+    "Hands-on programming via GenAI pipelines, CampusBuzz React/Node.js app",
+    "Collaborative multi-person work with Finance and Commercial teams"
    ],
    "gaps": [
-    "Professional experience exceeds new-grad limit of 18 months",
-    "Posting prioritizes Java, Ruby, JavaScript, Scala; profile lacks these",
-    "Single year of experience, role is new-grad level",
-    "No stated code review or large codebase experience"
+    "Profile shows no Java, Ruby, Go, or Scala experience",
+    "Professional experience (1.5 years) exceeds new-grad 18-month limit, though internships excluded",
+    "Work is SQL/BI-focused, not core software engineering",
+    "Limited evidence of code review or production system updates"
    ],
    "postedAt": "2026-10-28T05:19:59-04:00",
    "status": "new"
   },
   {
-   "handle": "a21",
+   "handle": "a67",
+   "company": "Hevo Data",
+   "title": "Associate Customer Experience Engineer",
+   "url": "https://jobs.lever.co/hevodata/96993ebc-609a-4733-84cd-e1a0c3e69fda",
+   "location": "Pune, Maharashtra; India",
+   "remote": false,
+   "score": 62,
+   "oneLine": "No-code data pipeline platform moving data from 150+ sources into warehouses and lakes.",
+   "matches": [
+    "Strong SQL and data modeling from AB InBev data products",
+    "ETL pipeline building and automation with SQL and Power BI",
+    "Data warehousing-style star schema and normalization experience",
+    "Technical stakeholder communication with Finance and Commercial leadership"
+   ],
+   "gaps": [
+    "No technical product or customer support experience stated",
+    "No JDBC-based source or integration troubleshooting shown",
+    "No Java or object-oriented language experience listed beyond Python",
+    "No REST API, webhook, or DBA experience demonstrated"
+   ],
+   "postedAt": "2026-09-25T08:16:49.362Z",
+   "status": "new"
+  },
+  {
+   "handle": "a69",
+   "company": "Hevo Data",
+   "title": "Business System Engineer",
+   "url": "https://jobs.lever.co/hevodata/95ab9f01-3671-4073-9990-4418aecb24e7",
+   "location": "Bangalore, India",
+   "remote": false,
+   "score": 62,
+   "oneLine": "Hevo Data is a no-code data pipeline platform automating data integration and transformation for enterprises.",
+   "matches": [
+    "Python skills with Pandas and NumPy, plus GenAI extraction pipelines",
+    "SQL data modeling and ETL automation at AB InBev",
+    "Built GPT-based extraction pipeline with prompt design and output evaluation",
+    "Built full-stack CampusBuzz app using React.js, Node.js, MongoDB"
+   ],
+   "gaps": [
+    "No stated use of Claude Code, Codex, or coding agents",
+    "No explicit Git or standard development workflow experience listed",
+    "Limited stated experience with agent frameworks beyond prompt-based GPT work",
+    "Role centers on internal tool ownership; profile is mainly BI reporting"
+   ],
+   "postedAt": "2026-09-17T10:29:13.314Z",
+   "status": "new"
+  },
+  {
+   "handle": "a70",
+   "company": "Hevo Data",
+   "title": "SDE I",
+   "url": "https://jobs.lever.co/hevodata/6cbbe304-e065-4711-bf3e-756795d2bc2a",
+   "location": "Bangalore, India",
+   "remote": false,
+   "score": 62,
+   "oneLine": "Hevo Data is a no-code data pipeline platform that moves data from SaaS apps to warehouses.",
+   "matches": [
+    "1.5 years data engineering, SQL and ETL pipelines at AB InBev",
+    "Python skills with Pandas and NumPy listed",
+    "Built React Native and Node.js app with Express backend",
+    "B.Tech in Information Technology from MIT Manipal"
+   ],
+   "gaps": [
+    "No Java or TypeScript experience stated in profile",
+    "No explicit REST API design or connector implementation work",
+    "Background is data/BI rather than SDE-style software engineering",
+    "Degree is IT, not Computer Science"
+   ],
+   "postedAt": "2026-07-27T06:58:22.493Z",
+   "status": "new"
+  },
+  {
+   "handle": "a22",
+   "company": "Observe.AI",
+   "title": "AI Agent Engineer",
+   "url": "https://www.observe.ai/position?gh_jid=5432596008",
+   "location": "Bengaluru ; Bengaluru, Karnataka, India",
+   "remote": false,
+   "score": 52,
+   "oneLine": "AI Agents platform automating customer experience and service across brands like DoorDash.",
+   "matches": [
+    "Strong Python and SQL data work; relevant to scripting and integrations",
+    "Built GenAI GPT extraction pipeline with prompt-based extraction (BharatBill)",
+    "Bachelor's in Information Technology from MIT Manipal, 2025",
+    "Client-facing delivery: weekly executive reporting for Finance and Commercial leadership"
+   ],
+   "gaps": [
+    "No telephony, SIP, CCaaS or Twilio experience shown",
+    "No RAG, vector DB or LangChain/LlamaIndex experience stated",
+    "No iPaaS tools like n8n or Zapier mentioned",
+    "Experience is mainly data engineering, not conversational AI delivery"
+   ],
+   "postedAt": "2026-09-23T06:13:40-04:00",
+   "status": "new"
+  },
+  {
+   "handle": "a37",
    "company": "GitLab",
    "title": "People Systems Engineer",
    "url": "https://job-boards.greenhouse.io/gitlab/jobs/8861748002",
    "location": "Bangalore, India; Remote, Poland; India",
    "remote": true,
-   "score": 42,
-   "oneLine": "GitLab is a DevSecOps platform used by millions to build and secure software.",
+   "score": 52,
+   "oneLine": "GitLab is a DevSecOps platform for software teams to build, secure and ship code.",
    "matches": [
-    "Backend experience with Python and production APIs at Paysetu",
-    "Hands-on Python job reconciling millions of rows at Kitebird",
-    "Kafka and PostgreSQL production experience at payments startup",
-    "Strong fit for Git-based, production-quality engineering mindset"
+    "Hands-on SQL, ETL pipeline building and automation at AB InBev",
+    "Python experience (Pandas, NumPy) and GenAI extraction pipelines",
+    "Built and deployed dashboards and data models for executive reporting",
+    "Hands-on AI and LLM work through GPT-based pipeline projects"
    ],
    "gaps": [
-    "No Workato or iPaaS production experience shown",
-    "No Ruby experience stated; Python is comparable",
-    "No Workday, Greenhouse, or Slack API integration experience",
-    "Only one year experience; role targets HR systems integration"
+    "No Workato or iPaaS production experience stated",
+    "No Workday, Greenhouse or Slack API integration experience shown",
+    "No Ruby or HR-systems automation background in profile",
+    "No CI/CD or SOX ITGC controls experience stated"
    ],
    "postedAt": "2026-10-09T16:55:56-04:00",
    "status": "new"
   },
   {
-   "handle": "a28",
+   "handle": "a62",
+   "company": "Supabase",
+   "title": "FinOps Data Engineer",
+   "url": "https://jobs.ashbyhq.com/supabase/73ddf93b-fe0c-455d-ba27-cdde0d3fb94f",
+   "location": "Remote, Global",
+   "remote": false,
+   "score": 52,
+   "oneLine": "Supabase is an open-source Postgres development platform used by developers worldwide.",
+   "matches": [
+    "SQL data models and ETL pipelines for executive reporting at AB InBev",
+    "Cloud billing-like cost analysis: Canada SAP overdue reporting automation",
+    "Pricing and margin analysis across markets with SQL and Python",
+    "Python scripting and GenAI extraction pipeline built from scratch"
+   ],
+   "gaps": [
+    "No stated AWS or GCP cloud cost optimization experience",
+    "No dbt or BigQuery experience listed",
+    "No forecasting or anomaly detection work demonstrated for cost data",
+    "No Terraform, Lambda, or FinOps tooling experience"
+   ],
+   "postedAt": "2026-10-14T16:54:28.658+00:00",
+   "status": "new"
+  },
+  {
+   "handle": "a66",
+   "company": "Tekion",
+   "title": "Software Development Test Engineer - II",
+   "url": "https://jobs.ashbyhq.com/Tekion/061fcb56-abb0-4d68-a760-69f3cecd9858",
+   "location": "Bangalore HQ; India",
+   "remote": false,
+   "score": 52,
+   "oneLine": "Cloud-native automotive retail platform connecting OEMs, dealers and consumers.",
+   "matches": [
+    "Data modeling and SQL transformation layers at AB InBev",
+    "Built automated SQL ETL pipelines feeding Power BI reporting",
+    "Data validation and reconciliation of figures before leadership releases",
+    "Hands-on GenAI pipeline evaluation of model outputs"
+   ],
+   "gaps": [
+    "No dedicated test engineering or QA automation experience shown",
+    "No stated experience with test frameworks or regression suites",
+    "No evidence of AI agent evaluation datasets or evals at scale",
+    "Only about 1.5 years experience; role expects test engineer II seniority"
+   ],
+   "postedAt": "2026-07-07T10:51:22.594+00:00",
+   "status": "new"
+  },
+  {
+   "handle": "a71",
+   "company": "Mindtickle",
+   "title": "Customer Support Engineer - I",
+   "url": "https://jobs.lever.co/mindtickle/68626a39-ae90-4870-b3c7-04bf489f66f7",
+   "location": "Pune, Maharashtra; India",
+   "remote": false,
+   "score": 52,
+   "oneLine": "Mindtickle is a SaaS platform for sales enablement and training with AI solutions.",
+   "matches": [
+    "1.5 years data engineering experience at AB InBev, within the 2-year range",
+    "Hands-on SQL, Python and ETL pipeline automation experience",
+    "Built GenAI extraction pipeline with GPT, showing AI-related hands-on work",
+    "Full-stack project experience with Node.js, Express, MongoDB, React Native"
+   ],
+   "gaps": [
+    "No customer-facing or technical support engineering experience shown",
+    "No cloud platform or API-service experience stated in profile",
+    "Role centers on troubleshooting live customer issues, not data modeling",
+    "Current role is BI reporting, not support or incident resolution"
+   ],
+   "postedAt": "2026-11-04T11:16:30.365Z",
+   "status": "new"
+  },
+  {
+   "handle": "a30",
+   "company": "Zscaler",
+   "title": "Business Support Analyst (LMS Admin)",
+   "url": "https://job-boards.greenhouse.io/zscaler/jobs/5261002007",
+   "location": "Bangalore, IND",
+   "remote": false,
+   "score": 45,
+   "oneLine": "Provides Zero Trust cloud security platform (SASE) protecting customers from cyberattacks and data loss.",
+   "matches": [
+    "B.Tech in Information Technology, 2025, fits degree requirement",
+    "GenAI extraction pipelines and prompt design for GPT-based outputs",
+    "ETL automation and Power BI reporting for executive stakeholders",
+    "Foundational ML work: Intel CNN internship, Amazon ML Summer School"
+   ],
+   "gaps": [
+    "No Cornerstone OnDemand or LMS administration experience stated",
+    "No Copilot Studio or Power Automate low-code automation experience",
+    "No SaaS application support or ITSM helpdesk experience stated",
+    "No REST API or frontend troubleshooting experience stated"
+   ],
+   "postedAt": "2026-10-16T11:27:41-04:00",
+   "status": "new"
+  },
+  {
+   "handle": "a1",
+   "company": "Paytm",
+   "title": "Business Analytics- Paytm Gold | Experience : 5-7 yrs",
+   "url": "https://jobs.lever.co/paytm/ab166330-5876-488e-b90c-749df6e871b1",
+   "location": "Noida, Uttar Pradesh; India",
+   "remote": false,
+   "score": 42,
+   "oneLine": "Paytm is India's mobile payments and financial services company serving small businesses and consumers.",
+   "matches": [
+    "Strong SQL data modelling and ETL experience at AB InBev",
+    "Power BI dashboards and executive reporting delivered",
+    "Python pandas and numpy skills stated in profile",
+    "Owned a data product end to end with business impact"
+   ],
+   "gaps": [
+    "Requires 5-7 years; candidate has about 1.5 years",
+    "No stated consumer internet, fintech or e-commerce experience",
+    "No cohort, retention, LTV or A/B experiment analysis shown",
+    "No Trino, Presto, Hive, Redshift or BigQuery experience listed"
+   ],
+   "postedAt": "2026-08-21T08:28:11.101Z",
+   "status": "new"
+  },
+  {
+   "handle": "a20",
+   "company": "HackerRank",
+   "title": "Product Analyst II",
+   "url": "https://job-boards.greenhouse.io/hackerrank/jobs/8146911",
+   "location": "Hybrid in Bangalore, India; Hybrid in Bengaluru, India ",
+   "remote": false,
+   "score": 42,
+   "oneLine": "HackerRank runs a skills-based developer hiring and upskilling platform used by thousands of companies.",
+   "matches": [
+    "Advanced-leaning SQL data modeling and ETL pipelines at AB InBev",
+    "Python (Pandas, NumPy) for analysis and data prep",
+    "Built KPI metrics and dashboards for executive leadership",
+    "GenAI extraction pipelines and evaluation of model outputs"
+   ],
+   "gaps": [
+    "About 1.5 years experience versus required 3-6 years",
+    "No stated product analytics, funnel, or retention experience",
+    "No stated experimentation, A/B testing, or causal inference work",
+    "No event or clickstream product data experience shown"
+   ],
+   "postedAt": "2026-08-26T14:17:13-04:00",
+   "status": "new"
+  },
+  {
+   "handle": "a33",
+   "company": "GitLab",
+   "title": "Intermediate Backend Engineer, Authorization",
+   "url": "https://job-boards.greenhouse.io/gitlab/jobs/8905402002",
+   "location": "Bangalore, India; India",
+   "remote": false,
+   "score": 42,
+   "oneLine": "GitLab is a DevSecOps platform for software development, security, and compliance teams.",
+   "matches": [
+    "1.5 years building production SQL data models and ETL pipelines",
+    "Python and SQL skills, plus Pandas and NumPy experience",
+    "Built GenAI extraction pipeline with GPT-based prompt design",
+    "Hands-on TensorFlow ML work from Intel internship"
+   ],
+   "gaps": [
+    "No production Ruby on Rails experience stated in profile",
+    "No authorization or role-based access control work shown",
+    "Requires 2-4 years backend engineering; profile shows 1.5 years data work",
+    "No backend API or GraphQL/REST enforcement experience listed"
+   ],
+   "postedAt": "2026-11-03T05:30:08-05:00",
+   "status": "new"
+  },
+  {
+   "handle": "a34",
+   "company": "GitLab",
+   "title": "Intermediate Backend Engineer, India",
+   "url": "https://job-boards.greenhouse.io/gitlab/jobs/8775507002",
+   "location": "Bangalore, India",
+   "remote": false,
+   "score": 42,
+   "oneLine": "GitLab is a DevSecOps platform used by millions of developers worldwide.",
+   "matches": [
+    "1.5 years production data engineering with SQL and ETL automation",
+    "Built Python and GPT-based GenAI extraction pipeline with real users",
+    "Built CampusBuzz React Native, Node.js and Express app used by 10,000+ students",
+    "Based in Bengaluru, India, matching remote-first India hiring"
+   ],
+   "gaps": [
+    "No Ruby/Rails or Go backend production experience stated",
+    "No PostgreSQL, Docker, Kubernetes or CI/CD experience shown",
+    "Current role is BI and analytics, not backend service ownership",
+    "Profile lacks on-call or production service operation evidence"
+   ],
+   "postedAt": "2026-09-02T14:50:52-04:00",
+   "status": "new"
+  },
+  {
+   "handle": "a40",
+   "company": "Elastic",
+   "title": "Marketing AI Engineer",
+   "url": "https://jobs.elastic.co/jobs?gh_jid=8265123&gh_jid=8265123",
+   "location": "Bangalore, India; India",
+   "remote": false,
+   "score": 42,
+   "oneLine": "Elastic makes Elasticsearch and the Search AI Platform for search, security, and observability.",
+   "matches": [
+    "Built SQL data models and ETL pipelines feeding Power BI at AB InBev",
+    "Hands-on GPT-based extraction pipeline with prompt design and output evaluation",
+    "Cross-functional stakeholder work turning Finance and Commercial requirements into reports",
+    "Built cross-platform app with admin portal and role-based dashboards"
+   ],
+   "gaps": [
+    "Requires 4+ years; candidate has about 1.5 years experience",
+    "No no-code platform experience with Zapier, Make, n8n, or Workfront Fusion shown",
+    "No marketing operations or marketing technology background shown",
+    "Limited API and webhook integration work for marketing platforms"
+   ],
+   "postedAt": "2026-10-14T00:13:45-04:00",
+   "status": "new"
+  },
+  {
+   "handle": "a45",
    "company": "Coinbase",
    "title": "Machine Learning Engineer",
    "url": "https://www.coinbase.com/careers/positions/7985187?gh_jid=7985187",
    "location": "Remote - India; Mumbai, Maharashtra, India",
    "remote": true,
    "score": 42,
-   "oneLine": "Crypto exchange building AI-powered customer support and conversational orchestration systems.",
+   "oneLine": "Crypto exchange platform enabling people to buy, sell, and manage digital assets.",
    "matches": [
-    "Strong Python and Go backend production experience at Paysetu",
-    "Kafka and PostgreSQL production experience matches platform needs",
-    "Built and tested fault-tolerant tinyqueue persistence project"
+    "Strong Python skills with Pandas and NumPy from data work",
+    "Built GPT-based extraction pipeline with prompt design and evaluation",
+    "Shipped CNN model with INT8 quantization at Intel internship",
+    "Designed and delivered production data pipelines at AB InBev"
    ],
    "gaps": [
-    "Only one year experience; posting requires 2+ years",
-    "No stated LLM, deep learning, or LangGraph/Vertex/Bedrock experience",
-    "No ML or NLP domain experience shown in profile",
-    "No design document or ML systems communication evidence"
+    "About 1.5 years experience versus required 2+ years in ML",
+    "No stated LangGraph, LangSmith, Vertex AI, or Bedrock experience",
+    "No multi-agent or conversational orchestration system experience shown",
+    "No stated production ML service deployment at scale"
    ],
    "postedAt": "2026-06-22T15:16:53-04:00",
    "status": "new"
   },
   {
-   "handle": "a34",
-   "company": "Supabase",
-   "title": "Platform Engineer, Managed Postgres",
-   "url": "https://jobs.ashbyhq.com/supabase/9073c0cd-2545-473a-b2ac-63e4615c69b5",
-   "location": "Remote, Global",
+   "handle": "a48",
+   "company": "Figma",
+   "title": "Technical Quality Specialist (Bengaluru, India)",
+   "url": "https://boards.greenhouse.io/figma/jobs/6230562004?gh_jid=6230562004",
+   "location": "Bengaluru, India",
    "remote": false,
    "score": 42,
-   "oneLine": "Postgres development platform offering database, auth, storage, realtime, and edge functions.",
+   "oneLine": "Figma makes collaborative design tools for teams to design, prototype and build together.",
    "matches": [
-    "Go services on PostgreSQL and Kafka at Paysetu",
-    "Built refunds service handling 40,000 refunds daily",
-    "Cut payouts API p95 latency by batching ledger writes",
-    "Built persistent job queue with write-ahead log recovery"
+    "Hands-on SQL, data modeling and ETL pipeline experience at AB InBev",
+    "Customer-facing executive reporting and cross-team partnership with Finance and Commercial",
+    "Working knowledge of JavaScript/React via CampusBuzz React apps",
+    "Based in Bengaluru, hybrid Koramangala office matches location"
    ],
    "gaps": [
-    "Only about one year experience; posting asks 5+ years",
-    "No TypeScript experience shown",
-    "No Pulumi or Terraform infrastructure-as-code shown",
-    "Limited distributed systems depth at scale; no on-call evidence"
+    "No stated technical support or SaaS customer support experience",
+    "No stated OAuth, REST API troubleshooting across Mac, Windows, iOS, Android",
+    "Role requires evening weekend shift coverage; not addressed in profile",
+    "Role centers on live customer issue resolution rather than analytics"
    ],
-   "postedAt": "2026-10-09T17:17:39.437+00:00",
+   "postedAt": "2026-10-23T00:53:28-04:00",
    "status": "new"
   },
   {
-   "handle": "a42",
+   "handle": "a59",
    "company": "Supabase",
    "title": "FinOps Engineer",
    "url": "https://jobs.ashbyhq.com/supabase/fab1525f-3d89-4d1c-9094-84d21647415e",
    "location": "Remote, Global",
    "remote": true,
    "score": 42,
-   "oneLine": "Postgres development platform offering database, auth, storage, realtime, and edge functions.",
+   "oneLine": "Supabase is an open-source Postgres development platform offering database, auth, storage, and realtime services.",
    "matches": [
-    "Strong Python and Terraform-adjacent automation via backend work",
-    "AWS experience listed in skills; Python scripting shown",
-    "Cost-conscious engineering: cut payouts API latency via batching",
-    "Remote global role; candidate based in India, eligible"
+    "Hands-on SQL and Python data pipelines, ETL automation at AB InBev",
+    "Cost and financial reporting work for Finance leadership",
+    "Built Power BI dashboards and executive reporting on billing-like data",
+    "Python scripting for automation with pandas and SQL"
    ],
    "gaps": [
-    "No FinOps, cloud cost, or governance experience stated",
-    "No evidence of AWS Cost Explorer or billing tooling use",
-    "No Terraform or Lambda work shown in profile",
-    "Only one year of experience; role expects cost governance depth"
+    "No AWS or GCP cloud infrastructure or billing experience stated",
+    "No Terraform, Lambda, or infrastructure-as-code experience stated",
+    "No prior FinOps or cloud cost management role",
+    "Less than two years experience versus senior-leaning hands-on role"
    ],
    "postedAt": "2026-09-16T18:40:09.760+00:00",
    "status": "new"
   },
   {
-   "handle": "a45",
+   "handle": "a60",
    "company": "Supabase",
-   "title": "FinOps Data Engineer",
-   "url": "https://jobs.ashbyhq.com/supabase/73ddf93b-fe0c-455d-ba27-cdde0d3fb94f",
+   "title": "SDK Engineer - Python",
+   "url": "https://jobs.ashbyhq.com/supabase/b65287c7-2071-4bc6-8717-58c090e2a372",
    "location": "Remote, Global",
-   "remote": false,
+   "remote": true,
    "score": 42,
-   "oneLine": "Open-source Postgres-based backend platform offering a fully remote, globally distributed developer database.",
+   "oneLine": "Postgres development platform offering database, auth, storage, realtime and edge functions.",
    "matches": [
-    "Go and Python services on PostgreSQL and Kafka at Paysetu",
-    "Built Python reconciliation job over 2 million rows",
-    "Cut payouts API p95 latency by batching ledger writes",
-    "Docker, Kubernetes, and AWS listed in skills"
+    "Hands-on Python with Pandas and NumPy for data work",
+    "Built GenAI extraction pipelines using GPT-based prompting",
+    "Built CampusBuzz React Native and Node.js app used by 10,000+ students",
+    "Remote global role; candidate is Indian citizen, eligible"
    ],
    "gaps": [
-    "No FinOps or cloud cost optimization experience stated",
-    "No dbt or BigQuery experience shown",
-    "No data science forecasting or anomaly detection work",
-    "Only one year of experience against a senior-leaning scope"
+    "No published Python library or public API maintenance shown",
+    "No evidence of advanced typing, generics, or strict type checking",
+    "No asyncio or websocket/realtime experience stated",
+    "Experience is data engineering and BI, not SDK or library authoring"
    ],
-   "postedAt": "2026-10-14T16:54:28.658+00:00",
+   "postedAt": "2026-10-16T15:41:37.459+00:00",
    "status": "new"
   },
   {
-   "handle": "a31",
-   "company": "Figma",
-   "title": "Technical Quality Specialist (Bengaluru, India)",
-   "url": "https://boards.greenhouse.io/figma/jobs/6230562004?gh_jid=6230562004",
-   "location": "Bengaluru, India",
+   "handle": "a68",
+   "company": "Hevo Data",
+   "title": "Associate Technical Writer",
+   "url": "https://jobs.lever.co/hevodata/8334030a-d6e3-46cc-96a4-f16c5412ed74",
+   "location": "Bangalore, India",
    "remote": false,
-   "score": 40,
-   "oneLine": "Figma makes collaborative design tools for teams to design, prototype, and build products.",
+   "score": 42,
+   "oneLine": "No-code data pipeline platform for ETL and data integration, rated #1 on G2.",
    "matches": [
-    "Strong debugging via payments backend work at Paysetu",
-    "Hands-on REST APIs and Kafka-based event systems",
-    "Python and Go troubleshooting experience from internship and job",
-    "Bengaluru-based, citizen with work rights in India"
+    "Strong SQL, Python and data modeling experience from AB InBev",
+    "Experience with Power BI dashboards and executive reporting",
+    "Hands-on GenAI and GPT-based extraction pipeline work",
+    "Comfortable with AI tools, prompt design and output evaluation"
    ],
    "gaps": [
-    "Role asks 2+ years support or QA; candidate has one year",
-    "No stated customer-facing support or SaaS support experience",
-    "No React, JavaScript/TypeScript, or OAuth evidence in profile",
-    "No mention of Mac, Windows, iOS, or Android troubleshooting"
+    "No technical writing or documentation experience stated",
+    "No Markdown, Jekyll or docs-as-code workflow shown",
+    "Role is writing-focused; profile is data engineering",
+    "Strong written English for end users not demonstrated"
    ],
-   "postedAt": "2026-10-23T00:53:28-04:00",
+   "postedAt": "2026-09-18T09:18:39.381Z",
    "status": "new"
   },
   {
    "handle": "a2",
+   "company": "Paytm",
+   "title": "Growth Management & Analytics- Recharges & Utilities I Exp- 4-6 Years",
+   "url": "https://jobs.lever.co/paytm/36be80ec-3701-4d0f-8048-7571e3bd3a56",
+   "location": "Noida, Uttar Pradesh; Gurugram, Haryana; Bangalore, Karnataka; India",
+   "remote": false,
+   "score": 38,
+   "oneLine": "Paytm is an Indian fintech offering payments, recharges, utilities and digital lending services.",
+   "matches": [
+    "SQL data modeling and ETL pipeline building at AB InBev",
+    "Power BI dashboards and executive reporting experience",
+    "Python (Pandas) and data validation skills listed",
+    "Engineering background (B.Tech IT) fits analytical mindset"
+   ],
+   "gaps": [
+    "Requires 4-6 years; candidate has about 1.5 years",
+    "Growth or marketing campaign management experience not shown",
+    "No Hive, BigQuery, or Advanced Excel VBA evidence in profile",
+    "Fintech or e-commerce user-lifecycle experience not evident"
+   ],
+   "postedAt": "2026-09-15T18:21:32.726Z",
+   "status": "new"
+  },
+  {
+   "handle": "a5",
+   "company": "FamPay",
+   "title": "Data Engineer (SDE 2)",
+   "url": "https://jobs.lever.co/fampay/01750a61-a53b-433f-8d8c-bfb5a18417f8",
+   "location": "Bengaluru; India",
+   "remote": false,
+   "score": 38,
+   "oneLine": "Fintech payments app and UPI/card platform for users above 11 in India.",
+   "matches": [
+    "SQL data modeling and ETL pipeline automation at AB InBev",
+    "Python and SQL work across data products",
+    "Power BI dashboards and executive reporting experience",
+    "Familiarity with GenAI pipelines and prompt-based extraction"
+   ],
+   "gaps": [
+    "Only 1.5 years experience versus required 3–5 years",
+    "No AWS (S3, EKS, MSK) or infrastructure-as-code experience shown",
+    "No PySpark, Airflow, or Temporal experience shown",
+    "No CDC, lakehouse table formats, or OLAP SCD/OBT domain modelling shown"
+   ],
+   "postedAt": "2026-08-21T06:36:41.969Z",
+   "status": "new"
+  },
+  {
+   "handle": "a13",
    "company": "Sarvam AI",
-   "title": "Platform Engineer - AI Infrastructure",
-   "url": "https://jobs.ashbyhq.com/sarvam/fcb15601-6440-41f7-aa79-b9992057a4b2",
-   "location": "Bengaluru; Chennai; India",
+   "title": "Infrastructure Engineer",
+   "url": "https://jobs.ashbyhq.com/sarvam/f09b6a35-e2d1-4833-8bc5-2b495991d882",
+   "location": "Bengaluru; India",
    "remote": false,
    "score": 38,
-   "oneLine": "Sovereign AI platform company building full-stack AI models and infrastructure for India.",
+   "oneLine": "Sarvam AI builds Indic-language AI models and products used at population scale.",
    "matches": [
-    "Built Go refunds service handling 40,000 refunds daily on PostgreSQL",
-    "Cut payouts API p95 latency 900 ms to 210 ms",
-    "Moved settlement events to Kafka with idempotent consumers",
-    "Go and Python backend experience, Docker and Kubernetes listed"
+    "Python scripting and automation of repeated manual reporting work",
+    "Built ETL pipeline automating manual SAP extraction, saving 2,400+ mins/month",
+    "Hands-on LLM/GPT pipeline building for real document extraction",
+    "Ownership of production data products and executive reporting"
    ],
    "gaps": [
-    "Only 1 year experience versus 5+ required",
-    "No Kubernetes controller or operator development shown",
-    "No GPU scheduling or MIG/RDMA experience stated",
-    "No platform or infrastructure-as-code product ownership shown"
+    "No Kubernetes or Docker experience shown in profile",
+    "No Linux systems, networking, or systemd operations experience stated",
+    "Primarily data/BI engineering, not infrastructure or SRE operations",
+    "No CI/CD, Terraform, or cloud infrastructure experience shown"
    ],
-   "postedAt": "2026-06-29T08:51:22.501+00:00",
+   "postedAt": "2026-10-26T06:29:28.519+00:00",
    "status": "new"
   },
   {
-   "handle": "a15",
-   "company": "MongoDB",
-   "title": "Cloud Operations Engineer",
-   "url": "https://www.mongodb.com/careers/job/?gh_jid=8184637",
-   "location": "Bengaluru; Bengaluru, Karnataka, India",
+   "handle": "a14",
+   "company": "Sarvam AI",
+   "title": "SDE2 - API Platform",
+   "url": "https://jobs.ashbyhq.com/sarvam/fd9ca9f7-c546-4264-acc6-ee4e58c0e693",
+   "location": "Bengaluru; India",
    "remote": false,
    "score": 38,
-   "oneLine": "MongoDB provides a globally distributed, multi-cloud database platform, including the Atlas service.",
+   "oneLine": "Sarvam AI builds full-stack AI models and APIs for India.",
    "matches": [
-    "Python and Go scripting skills, building production services",
-    "Database experience with PostgreSQL in payments production systems",
-    "Kafka event processing with idempotent consumers at Paysetu",
-    "Bengaluru-based, eligible for hybrid on-site work"
+    "Python production experience via AB InBev data pipelines and CampusBuzz backend",
+    "SQL and data modeling with PostgreSQL-adjacent MySQL experience",
+    "Built GenAI GPT extraction pipeline for invoices, relevant to LLM work",
+    "Hands-on ML inference optimization with quantized models at Intel"
    ],
    "gaps": [
-    "Requires at least 8 years on-call SRE/DevOps; candidate has one year",
-    "No stated Linux administration or networking expertise",
-    "No demonstrated on-call rotation or incident response experience",
-    "Limited AWS and monitoring tooling evidence beyond skills list"
+    "Only about 1.5 years experience versus 3+ years required",
+    "No evidence of asyncio, FastAPI, or high-load production services",
+    "No Go experience and no streaming (SSE/WebSocket) systems shown",
+    "No Kubernetes, Redis, or PostgreSQL production experience stated"
    ],
-   "postedAt": "2026-09-23T01:08:06-04:00",
+   "postedAt": "2026-10-29T06:49:35.210+00:00",
    "status": "new"
   },
   {
-   "handle": "a26",
-   "company": "Twilio",
-   "title": "Personalized Support Engineer",
-   "url": "https://job-boards.greenhouse.io/twilio/jobs/8213730",
-   "location": "Remote - India",
-   "remote": true,
+   "handle": "a16",
+   "company": "Glance",
+   "title": "Applied Scientist II - Recommendation",
+   "url": "https://job-boards.greenhouse.io/glance/jobs/7528898",
+   "location": "Bangalore; Bangalore, Karnataka, India",
+   "remote": false,
    "score": 38,
-   "oneLine": "Remote-first communications platform powering developer APIs for messaging, voice, and customer engagement.",
+   "oneLine": "Intelligent shopping agent delivering personalized lock screen and live entertainment experiences across mobile and TV.",
    "matches": [
-    "Fluent English implied by PES degree? Not stated; omit",
-    "One year backend work with REST-style production services",
-    "Strong technical depth: Go, PostgreSQL, Kafka, latency tuning",
-    "Remote India role matches candidate's work rights"
+    "Hands-on SQL data modeling and ETL pipelines at AB InBev",
+    "Python with Pandas and NumPy; ML model experience at Intel",
+    "CNN image classification and INT8 quantization at Intel",
+    "GenAI extraction pipeline built with GPT in BharatBill project"
    ],
    "gaps": [
-    "Requires 2+ years client-facing technical support; candidate has 1 year",
-    "No stated customer support or ticket system (Zendesk) experience",
-    "No stated experience with top-tier customers or SLA-bound support",
-    "Posting is a support shift role; candidate's experience is backend engineering"
+    "Requires 2+ years industry ML experience; profile shows 1.5 years",
+    "No demonstrated recommendation systems or ranking models",
+    "No Spark, Hadoop, or cloud platform experience stated",
+    "No production deployment of recommendation or NLP models at scale"
    ],
-   "postedAt": "2026-09-23T09:59:26-04:00",
+   "postedAt": "2026-10-27T02:52:33-04:00",
    "status": "new"
   },
   {
-   "handle": "a33",
-   "company": "Supabase",
-   "title": "AI Platform Engineer",
-   "url": "https://jobs.ashbyhq.com/supabase/3b5d54ca-741b-45ac-bd3f-31605a0d3541",
-   "location": "Remote, Global",
+   "handle": "a32",
+   "company": "GitLab",
+   "title": "Benefits Analyst",
+   "url": "https://job-boards.greenhouse.io/gitlab/jobs/8864819002",
+   "location": "Bangalore, India; India",
    "remote": false,
    "score": 38,
-   "oneLine": "Postgres development platform offering database, auth, storage, realtime, and vector search, open source.",
+   "oneLine": "GitLab is a DevSecOps platform for software development and security teams.",
    "matches": [
-    "Shipped Go refunds service handling 40,000 refunds daily on PostgreSQL",
-    "Cut payouts API p95 latency 900 ms to 210 ms",
-    "Built Kafka settlement events with idempotent consumers",
-    "Python reconciliation job processing 2 million rows nightly"
+    "Data modeling and SQL ETL pipelines at AB InBev, Finance reporting",
+    "Power BI dashboards for executive and Finance leadership",
+    "Excel-adjacent data validation and reconciliation work",
+    "Based in Bengaluru, India, citizen with work rights"
    ],
    "gaps": [
-    "Only one year of experience; role expects senior-level ownership",
-    "No shipped LLM agent systems or evaluation suites evident",
-    "No MCP server or LLM observability experience stated",
-    "No GCP, infrastructure-as-code, or cloud warehouse experience shown"
+    "No benefits administration or enrollment experience stated",
+    "No experience with brokers, vendors or benefits audits",
+    "No benefits-related HRIS or Workday experience",
+    "Role is operations-focused, not analytics or data engineering"
    ],
-   "postedAt": "2026-07-31T18:56:39.246+00:00",
+   "postedAt": "2026-10-09T11:09:56-04:00",
    "status": "new"
   },
   {
    "handle": "a38",
-   "company": "Supabase",
-   "title": "Performance Engineer - Benchmarking",
-   "url": "https://jobs.ashbyhq.com/supabase/11beb619-0c25-4b11-9818-3f18e278c65b",
-   "location": "Remote, Global",
+   "company": "GitLab",
+   "title": "Software Engineer, Delivery : Release",
+   "url": "https://job-boards.greenhouse.io/gitlab/jobs/8916232002",
+   "location": "Bangalore, India; India",
    "remote": false,
    "score": 38,
-   "oneLine": "Postgres development platform offering database, auth, storage, realtime, and edge functions, open-source-first.",
+   "oneLine": "GitLab is a DevSecOps platform used by millions to build and ship software.",
    "matches": [
-    "Built Go refunds service on PostgreSQL at 40,000 refunds daily",
-    "Cut payouts API p95 latency 900 ms to 210 ms",
-    "Moved settlement events to Kafka with idempotent consumers",
-    "Built fault-injection-tested write-ahead log in tinyqueue"
+    "Python and SQL data engineering experience at AB InBev",
+    "Built ETL automation pipelines with SQL and Power BI",
+    "Machine learning intern work with TensorFlow optimizations",
+    "Basic Python proficiency, though not Ruby or Go"
    ],
    "gaps": [
-    "Only one year of experience; role wants deep performance engineering",
-    "No stated benchmarking system ownership or variance control experience",
-    "No Linux kernel or database internals depth shown",
-    "No evidence of profiling distributed systems or load-testing tooling"
+    "No Ruby or Go coding experience stated, a mandatory requirement",
+    "No large-scale distributed backend or release engineering shown",
+    "No CI/CD pipeline optimization or DevOps tooling experience",
+    "No observability, containerization, or Infrastructure as Code background"
    ],
-   "postedAt": "2026-07-28T09:49:44.361+00:00",
+   "postedAt": "2026-10-28T00:26:37-04:00",
    "status": "new"
   },
   {
-   "handle": "a40",
+   "handle": "a41",
+   "company": "Elastic",
+   "title": "UX Engineer",
+   "url": "https://jobs.elastic.co/jobs?gh_jid=8237463&gh_jid=8237463",
+   "location": "Bangalore, India; India",
+   "remote": false,
+   "score": 38,
+   "oneLine": "Elastic builds the Search AI Platform for finding answers across structured and unstructured data.",
+   "matches": [
+    "Built SQL data models and Power BI dashboards at AB InBev",
+    "Hands-on GenAI work: GPT extraction pipeline for GST invoices",
+    "React Native and React.js experience from CampusBuzz app",
+    "Machine learning internship with model optimization at Intel"
+   ],
+   "gaps": [
+    "No stated front-end engineering role or TypeScript experience",
+    "No evidence of streaming UI, SSE or WebSocket work",
+    "No design system, EUI, Storybook or WCAG experience shown",
+    "Profile is data engineering focused, not AI user interface work"
+   ],
+   "postedAt": "2026-09-29T04:39:57-04:00",
+   "status": "new"
+  },
+  {
+   "handle": "a57",
    "company": "Supabase",
    "title": "Platform Engineer - Compute Capacity",
    "url": "https://jobs.ashbyhq.com/supabase/4eb14408-51e6-4c58-812a-3782d5c0b045",
    "location": "Remote, Global",
    "remote": true,
    "score": 38,
-   "oneLine": "Postgres development platform offering database, auth, storage, realtime, and edge functions.",
+   "oneLine": "Supabase is an open-source Postgres development platform offering database, auth, storage and realtime services.",
    "matches": [
-    "Go production experience: built refunds service on PostgreSQL at Paysetu",
-    "Kafka experience with idempotent consumers at Paysetu",
-    "Latency optimization: cut payouts API p95 from 900ms to 210ms",
-    "Docker, Kubernetes, and AWS listed in skills"
+    "1.5 years data engineering, SQL and ETL at AB InBev",
+    "Built automated SQL ETL pipeline replacing manual reporting",
+    "Hands-on Python with Pandas and NumPy",
+    "Hands-on ML work with Intel TensorFlow optimisations and quantized inference"
    ],
    "gaps": [
-    "Requires 5+ years experience; candidate has about one year",
-    "No demonstrated capacity planning or EC2 reservation/quota knowledge",
-    "No infrastructure as code (Pulumi or Terraform) experience shown",
-    "No observability or alerting ownership like Prometheus or CloudWatch shown"
+    "Requires 5+ years infrastructure, SRE or platform experience; profile shows 1.5",
+    "No AWS EC2, capacity reservation or quota experience stated",
+    "No Infrastructure as Code (Pulumi or Terraform) experience listed",
+    "No production observability work with Prometheus, Grafana or CloudWatch"
    ],
    "postedAt": "2026-09-02T10:03:09.472+00:00",
    "status": "new"
   },
   {
-   "handle": "a46",
-   "company": "Supabase",
-   "title": "Container Engineer",
-   "url": "https://jobs.ashbyhq.com/supabase/6f7656fc-9983-48be-bbd3-8b40e0e3027a",
-   "location": "Remote, Global",
+   "handle": "a72",
+   "company": "Mindtickle",
+   "title": "Security and Automation Engineer",
+   "url": "https://jobs.lever.co/mindtickle/d62b36db-b088-48c7-a606-4ed458e30208",
+   "location": "Pune, Maharashtra; India",
    "remote": false,
    "score": 38,
-   "oneLine": "Postgres development platform offering database, auth, storage, and realtime backend services.",
+   "oneLine": "Mindtickle is an AI-powered sales enablement platform for revenue teams.",
    "matches": [
-    "Go services on PostgreSQL and Kafka at payments startup",
-    "Built Go refunds service handling 40,000 refunds daily",
-    "Cut payouts API p95 latency via batching, shows reliability work",
-    "Docker, Kubernetes, AWS listed in skills"
+    "Strong SQL and Python data pipeline experience at AB InBev",
+    "Automated SQL ETL pipeline replacing manual reporting",
+    "GenAI extraction pipelines via GPT prompt design",
+    "Built full-stack app with Node.js, Express, MongoDB"
    ],
    "gaps": [
-    "Requires 5+ years; profile shows 1 year experience",
-    "No demonstrated multi-tenant Kubernetes platform or cluster operations",
-    "No SRE on-call, SLO, or incident leadership shown",
-    "No Pulumi/Terraform or multi-account AWS experience stated"
+    "No security engineering or compliance framework experience shown",
+    "No evidence of GCP, Claude Code, or MCP server work",
+    "No identity, SSO/IAM, or MDM exposure stated",
+    "Under 2 years experience versus 1-3 year requirement with security lean"
    ],
-   "postedAt": "2026-10-26T09:32:58.735+00:00",
+   "postedAt": "2026-08-21T13:36:26.910Z",
    "status": "new"
   },
   {
-   "handle": "a47",
-   "company": "Supabase",
-   "title": "Software Engineer - Turso",
-   "url": "https://jobs.ashbyhq.com/supabase/7c5eb3fc-1087-4c1c-b3a2-a19fe01dd259",
-   "location": "Remote, Global",
+   "handle": "a35",
+   "company": "GitLab",
+   "title": "Intermediate Backend Engineer , Security Factory",
+   "url": "https://job-boards.greenhouse.io/gitlab/jobs/8890971002",
+   "location": "Bangalore, India; India",
+   "remote": false,
+   "score": 35,
+   "oneLine": "GitLab is a DevSecOps platform for software development, security and compliance.",
+   "matches": [
+    "1.5 years data engineering and SQL ETL experience at AB InBev",
+    "Python experience via Pandas, NumPy and GPT extraction pipelines",
+    "Machine learning internship at Intel with model optimization work",
+    "Hands-on GenAI pipeline experience including prompt-based extraction"
+   ],
+   "gaps": [
+    "No Rust or Go production experience stated in profile",
+    "Profile is data/BI focused, not backend or systems engineering",
+    "No static analysis, compilers or taint/data-flow analysis experience",
+    "No stated CI/CD, Docker or security tooling experience"
+   ],
+   "postedAt": "2026-11-04T14:15:55-05:00",
+   "status": "new"
+  },
+  {
+   "handle": "a42",
+   "company": "Twilio",
+   "title": "Personalized Support Engineer",
+   "url": "https://job-boards.greenhouse.io/twilio/jobs/8213730",
+   "location": "Remote - India",
    "remote": true,
-   "score": 38,
+   "score": 30,
+   "oneLine": "Twilio provides cloud communications APIs enabling businesses to engage customers via voice, SMS and messaging.",
+   "matches": [
+    "Client-facing technical experience at AB InBev supporting internal executive stakeholders",
+    "SQL and data troubleshooting skills across ETL and reporting pipelines",
+    "Strong ownership and prioritization shown in multi-stakeholder data delivery",
+    "Fluency in English implied by professional work and communication roles"
+   ],
+   "gaps": [
+    "Requires 2+ years client-facing support; candidate has 1.5 years",
+    "No REST API or cloud support experience shown in profile",
+    "No Zendesk or SLA-based ticket queue support experience",
+    "No experience with 24x7 shift work or top-tier customer support"
+   ],
+   "postedAt": "2026-09-23T09:59:26-04:00",
+   "status": "new"
+  },
+  {
+   "handle": "a46",
+   "company": "Datadog",
+   "title": "Commercial Sales Engineer",
+   "url": "https://careers.datadoghq.com/detail/8326311/?gh_jid=8326311",
+   "location": "Bangalore, India; Bangalore",
+   "remote": false,
+   "score": 30,
+   "oneLine": "Datadog is an observability and security platform unifying application, infrastructure, and security monitoring.",
+   "matches": [
+    "Data modeling and SQL transformation experience at AB InBev",
+    "Built Power BI executive dashboards for leadership",
+    "Hands-on GenAI pipeline work with GPT extraction",
+    "Bachelor's in IT from MIT Manipal, 2025"
+   ],
+   "gaps": [
+    "No sales engineering or solutions engineering experience",
+    "No DevOps, SRE, or platform engineering background stated",
+    "No DevOps monitoring or observability tool experience listed",
+    "No Windows or Linux systems administration experience shown"
+   ],
+   "postedAt": "2026-10-27T00:51:06-04:00",
+   "status": "new"
+  },
+  {
+   "handle": "a50",
+   "company": "Supabase",
+   "title": "AI Platform Engineer",
+   "url": "https://jobs.ashbyhq.com/supabase/3b5d54ca-741b-45ac-bd3f-31605a0d3541",
+   "location": "Remote, Global",
+   "remote": false,
+   "score": 30,
    "oneLine": "Postgres development platform offering database, auth, storage, realtime and vector search.",
    "matches": [
-    "Built Go refunds service on PostgreSQL at production scale",
-    "Kafka experience with idempotent consumers at Paysetu",
-    "Cut payouts API p95 latency via batching ledger writes",
-    "Crash-recovery write-ahead log in tinyqueue project"
+    "Shipped Python SQL ETL pipelines feeding Power BI in production",
+    "Built GenAI GPT extraction pipeline with evaluation of outputs",
+    "Data modeling and warehouse-style SQL transformation experience at AB InBev",
+    "Hands-on ML and TensorFlow work from Intel internship"
    ],
    "gaps": [
-    "Requires Rust, which profile does not show",
-    "No database engine or storage internals experience stated",
-    "Limited experience: one year, no Kubernetes or AWS production work shown",
-    "No deterministic simulation, formal verification or fuzzing experience listed"
+    "No demonstrated production LLM agent systems with incident history",
+    "No evaluation harness or CI gating experience shown",
+    "No MCP server or deep API work demonstrated",
+    "No GCP, infrastructure-as-code, or end-to-end infra ownership stated"
    ],
-   "postedAt": "2026-10-21T21:46:43.334+00:00",
+   "postedAt": "2026-07-31T18:56:39.246+00:00",
    "status": "new"
   },
   {
-   "handle": "a1",
+   "handle": "a12",
    "company": "Sarvam AI",
-   "title": "Infrastructure SRE - HPC",
-   "url": "https://jobs.ashbyhq.com/sarvam/e1dd678f-6e25-48b4-82d8-a1a7d10a78d6",
-   "location": "Bengaluru; Chennai; India",
-   "remote": false,
-   "score": 35,
-   "oneLine": "Sovereign AI platform for India spanning research, models, infrastructure and applications.",
-   "matches": [
-    "Go and Python backend services on PostgreSQL and Kafka",
-    "Production Kafka and idempotent consumers at Paysetu",
-    "Kubernetes and Docker listed among skills"
-   ],
-   "gaps": [
-    "Only 1 year experience versus 5+ years required",
-    "No GPU cluster operation experience shown",
-    "No parallel filesystem, RDMA, or NCCL experience shown",
-    "No demonstrated on-call infrastructure ownership"
-   ],
-   "postedAt": "2026-06-26T09:18:02.474+00:00",
-   "status": "new"
-  },
-  {
-   "handle": "a25",
-   "company": "Elastic",
-   "title": "UX Engineer",
-   "url": "https://jobs.elastic.co/jobs?gh_jid=8237463&gh_jid=8237463",
-   "location": "Bangalore, India; India",
-   "remote": false,
-   "score": 35,
-   "oneLine": "Elastic builds the Search AI Platform for finding answers across all data at scale.",
-   "matches": [
-    "Strong TypeScript-adjacent frontend background is not shown; backend Go/Python only",
-    "Streaming and async systems experience via Kafka event handling",
-    "Built production services handling large daily volumes"
-   ],
-   "gaps": [
-    "No React, TypeScript, or frontend engineering experience listed",
-    "No GenAI or conversational AI UI experience",
-    "No UX design, Figma, or accessibility (WCAG) experience shown",
-    "No Storybook or design system work"
-   ],
-   "postedAt": "2026-09-29T04:39:57-04:00",
-   "status": "new"
-  },
-  {
-   "handle": "a24",
-   "company": "Elastic",
-   "title": "Marketing AI Engineer",
-   "url": "https://jobs.elastic.co/jobs?gh_jid=8265123&gh_jid=8265123",
-   "location": "Bangalore, India; India",
-   "remote": false,
-   "score": 32,
-   "oneLine": "Elastic makes Elasticsearch and search AI platforms for search, security, and observability.",
-   "matches": [
-    "Hands-on Python and API work from backend roles",
-    "Built production services handling real transaction volume",
-    "Kafka and PostgreSQL experience from Paysetu"
-   ],
-   "gaps": [
-    "Requires 4+ years; candidate has one year",
-    "No stated no-code platform experience (Zapier, Make, n8n)",
-    "No stated LLM API or generative AI workflow experience",
-    "No marketing operations or martech background"
-   ],
-   "postedAt": "2026-10-14T00:13:45-04:00",
-   "status": "new"
-  },
-  {
-   "handle": "a5",
-   "company": "Sarvam AI",
-   "title": "DevOps Engineer",
-   "url": "https://jobs.ashbyhq.com/sarvam/d2d593e6-be5a-4431-b1fa-86f18d1c7edf",
+   "title": "Software Engineer - Model API Platform",
+   "url": "https://jobs.ashbyhq.com/sarvam/0371342b-5cb8-487b-9310-4d0eb5b37f47",
    "location": "Bengaluru; India",
    "remote": false,
-   "score": 30,
-   "oneLine": "Sarvam AI builds sovereign AI models and agent infrastructure for India.",
-   "matches": [
-    "Go and Python backend services on PostgreSQL and Kafka",
-    "Docker and Kubernetes listed in skills",
-    "AWS listed in skills",
-    "Software engineering fundamentals in Go and Python"
-   ],
-   "gaps": [
-    "Only one year experience versus 3+ years required",
-    "No demonstrated multi-cluster Kubernetes operations or operators",
-    "No Terraform or infrastructure-as-code experience shown",
-    "No VPN, IPsec, WireGuard, or CNI networking experience shown"
-   ],
-   "postedAt": "2026-08-28T06:52:14.577+00:00",
-   "status": "new"
-  },
-  {
-   "handle": "a36",
-   "company": "Supabase",
-   "title": "Release Engineer",
-   "url": "https://jobs.ashbyhq.com/supabase/f6035bf8-4f44-4425-9944-d5509a3c8652",
-   "location": "Remote, Global",
-   "remote": false,
-   "score": 30,
-   "oneLine": "Supabase is an open-source Postgres development platform offering database, auth, storage, and realtime services.",
-   "matches": [
-    "Built Go refunds service on PostgreSQL at production scale",
-    "Kafka experience with idempotent consumers in production",
-    "Cut payouts API p95 latency via batching, showing performance work",
-    "Some AWS, Kubernetes, and Docker listed in skills"
-   ],
-   "gaps": [
-    "Requires 5+ years; profile shows about one year",
-    "No stated SRE, on-call ownership, or incident leadership experience",
-    "No SLO, error budget, or DORA metrics experience shown",
-    "No infrastructure-as-code (Pulumi/Terraform) experience listed"
-   ],
-   "postedAt": "2026-07-27T11:06:59.312+00:00",
-   "status": "new"
-  },
-  {
-   "handle": "a41",
-   "company": "Supabase",
-   "title": "Platform Security Engineer (AMER/APAC)",
-   "url": "https://jobs.ashbyhq.com/supabase/8fa1c7a0-a85c-4562-a1f5-4dd22cadae27",
-   "location": "Remote, Global",
-   "remote": true,
    "score": 28,
-   "oneLine": "Postgres development platform offering managed database, auth, storage, and realtime services.",
+   "oneLine": "Builds sovereign full-stack AI platform and model APIs for India.",
    "matches": [
-    "Go and Kubernetes exposure via Paysetu services and skills list",
-    "PostgreSQL and Kafka production experience at Paysetu",
-    "Built persistent job queue with crash recovery and fault injection testing",
-    "AWS listed as a skill"
+    "Built SQL ETL pipelines and automation at AB InBev",
+    "Owned data product end to end, including delivery",
+    "Python experience with Pandas and NumPy",
+    "Daily GenAI/GPT pipeline work in BharatBill project"
    ],
    "gaps": [
-    "Requires senior-level platform security experience; candidate has one year",
-    "No stated security engineering, threat modeling, or container runtime isolation work",
-    "Limited hands-on Kubernetes and Linux security depth shown",
-    "No evidence of large multi-cluster or cloud security environments"
+    "Role requires 4-6 years; candidate has about 1.5",
+    "No production backend services or low-latency/WebSocket experience shown",
+    "No Golang or PostgreSQL/Redis experience stated",
+    "No on-call, distributed-systems or large-scale traffic ownership shown"
    ],
-   "postedAt": "2026-09-02T20:44:27.045+00:00",
+   "postedAt": "2026-10-13T07:12:53.480+00:00",
    "status": "new"
   },
   {
-   "handle": "a8",
+   "handle": "a6",
+   "company": "FamPay",
+   "title": "SDE 2 Infra",
+   "url": "https://jobs.lever.co/fampay/9b8d4eaa-cd29-4aec-8dcc-a33fd78d5657",
+   "location": "Bengaluru; India",
+   "remote": false,
+   "score": 22,
+   "oneLine": "Indian fintech payments app and UPI/card spending account for users above 11.",
+   "matches": [
+    "Python programming for automation, Pandas and NumPy experience",
+    "Hands-on AI tooling and GPT-based pipelines, validated outputs",
+    "SQL and ETL pipeline automation experience at AB InBev"
+   ],
+   "gaps": [
+    "Requires 3-6 years DevOps/SRE/platform; candidate has 1.5 years",
+    "No Kubernetes production experience shown in profile",
+    "No Terraform, cloud networking, or Linux infrastructure evidence",
+    "No SLO, on-call, or incident post-mortem ownership shown"
+   ],
+   "postedAt": "2026-10-01T06:54:56.766Z",
+   "status": "new"
+  },
+  {
+   "handle": "a15",
    "company": "Sarvam AI",
    "title": "Technical Writer",
    "url": "https://jobs.ashbyhq.com/sarvam/a0ccec8b-c0da-4394-b29c-f4a98c4e514d",
    "location": "Bengaluru; India",
    "remote": false,
    "score": 22,
-   "oneLine": "Sovereign AI platform building models, infrastructure and applications for India's enterprises and institutions.",
+   "oneLine": "Sarvam AI builds India's sovereign AI platform spanning models, infrastructure and applications.",
    "matches": [
-    "Based in Bengaluru, India, with India work rights",
-    "Engineering background in CSE and AI-adjacent backend work",
-    "Writes clearly about technical systems in project documentation"
+    "Hands-on GenAI pipeline experience with GPT-based extraction and prompt design",
+    "Explains technical models and benchmark results to business leadership",
+    "Strong SQL and data modeling background from AB InBev work",
+    "Built a published-scale student app with documentation-heavy product work"
    ],
    "gaps": [
-    "No portfolio of published technical writing shown",
-    "Role is writing-focused; candidate is a backend engineer",
-    "No journalism, editing, or developer education experience stated",
-    "Core requirement of editorial judgement is not evidenced"
+    "No portfolio of published writing or technical articles shown",
+    "No technical writing, journalism or editorial role in experience",
+    "Profile is data engineering focused, not writing focused",
+    "No evidence of editing or fact-checking contributions from others"
    ],
    "postedAt": "2026-11-03T06:49:20.002+00:00",
    "status": "new"
-  },
-  {
-   "handle": "a9",
-   "company": "Glance",
-   "title": "Applied Scientist II - Recommendation",
-   "url": "https://job-boards.greenhouse.io/glance/jobs/7528898",
-   "location": "Bangalore; Bangalore, Karnataka, India",
-   "remote": false,
-   "score": 22,
-   "oneLine": "Intelligent shopping agent app for personalized commerce across mobile and TV.",
-   "matches": [
-    "Python proficiency shown in Kitebird reconciliation job",
-    "Production backend experience at Paysetu with Go and Python",
-    "Big data-adjacent work: 2M-row nightly reconciliation pipeline"
-   ],
-   "gaps": [
-    "Requires 2+ years industry ML/Data Science experience; has one year backend",
-    "No recommendation systems or ranking model experience shown",
-    "No Spark, Hadoop, or ML model deployment shown",
-    "Applied scientist role needs statistics and deep learning background not in profile"
-   ],
-   "postedAt": "2026-10-27T02:52:33-04:00",
-   "status": "new"
-  },
-  {
-   "handle": "a10",
-   "company": "Sigmoid",
-   "title": "Database Migration Engineer",
-   "url": "https://job-boards.greenhouse.io/sigmoid/jobs/8829803002",
-   "location": "Bengaluru, Karnataka, India",
-   "remote": false,
-   "score": 22,
-   "oneLine": "Sigmoid provides data and analytics engineering services for enterprises.",
-   "matches": [
-    "Python scripting experience from reconciliation job at Kitebird",
-    "PostgreSQL experience running production services at Paysetu",
-    "AWS listed in skills; Bengaluru location matches"
-   ],
-   "gaps": [
-    "No Sybase ASE or IBM DB2 experience shown",
-    "No formal database migration project or cutover experience",
-    "No DBA, backup/recovery, or tuning role evident",
-    "Requires migration factory experience; profile shows one year as backend engineer"
-   ],
-   "postedAt": "2026-09-22T02:55:37-04:00",
-   "status": "new"
-  },
-  {
-   "handle": "a29",
-   "company": "Datadog",
-   "title": "Commercial Sales Engineer",
-   "url": "https://careers.datadoghq.com/detail/8326311/?gh_jid=8326311",
-   "location": "Bangalore, India; Bangalore",
-   "remote": false,
-   "score": 22,
-   "oneLine": "Datadog provides a unified observability and security platform for enterprises worldwide.",
-   "matches": [
-    "Strong Go and Python backend engineering experience",
-    "Hands-on Kafka and PostgreSQL production work at Paysetu",
-    "Based in Bengaluru, matching hybrid on-site location"
-   ],
-   "gaps": [
-    "Requires 3+ years sales or solutions engineering experience; profile has none",
-    "Requires DevOps/SRE or platform engineering background; profile shows backend only",
-    "No stated customer-facing presentation or demo experience",
-    "No evidence of Windows or Linux systems administration experience"
-   ],
-   "postedAt": "2026-10-27T00:51:06-04:00",
-   "status": "new"
-  },
-  {
-   "handle": "a37",
-   "company": "Supabase",
-   "title": "Performance Engineer - Performance Analysis & Tuning",
-   "url": "https://jobs.ashbyhq.com/supabase/98ef6a11-9898-4960-9931-1264285849f3",
-   "location": "Remote, Global",
-   "remote": false,
-   "score": 22,
-   "oneLine": "Postgres development platform offering database, auth, storage, realtime, and vector search.",
-   "matches": [
-    "Go and PostgreSQL production services at Paysetu",
-    "Cut p95 latency 900 ms to 210 ms via batching",
-    "Kafka experience with idempotent consumers",
-    "Fault-injection tested persistent queue project in Go"
-   ],
-   "gaps": [
-    "Requires deep performance engineering experience; candidate has one year",
-    "No stated Linux kernel or database internals depth",
-    "No evidence of TCP, network or AWS storage performance work",
-    "No cross-team influence or profiling at multiple stack layers shown"
-   ],
-   "postedAt": "2026-07-28T09:41:57.229+00:00",
-   "status": "new"
-  },
-  {
-   "handle": "a11",
-   "company": "HackerRank",
-   "title": "Deep Learning Research Engineer",
-   "url": "https://job-boards.greenhouse.io/hackerrank/jobs/8273522",
-   "location": "Hybrid in Bangalore, India; Hybrid in Bengaluru, India ",
-   "remote": false,
-   "score": 18,
-   "oneLine": "HackerRank runs a talent-assessment platform building AI interviewing and fraud-detection systems.",
-   "matches": [
-    "Strong Python and backend engineering experience, one year at Paysetu",
-    "Hybrid Bengaluru role; candidate is Bengaluru-based Indian citizen",
-    "Familiar with distributed systems via Kafka and PostgreSQL work"
-   ],
-   "gaps": [
-    "Requires M.Tech/M.S./Ph.D. in AI/ML; candidate holds B.Tech in CSE",
-    "Requires 2–3 years of deep learning or applied AI research; candidate has one year, backend-focused",
-    "No PyTorch or JAX experience or deep learning model development shown",
-    "No publications or research record shown"
-   ],
-   "postedAt": "2026-10-14T07:32:28-04:00",
-   "status": "new"
-  },
-  {
-   "handle": "a23",
-   "company": "Elastic",
-   "title": "AI Tool Admin",
-   "url": "https://jobs.elastic.co/jobs?gh_jid=8314336&gh_jid=8314336",
-   "location": "Bangalore, India; India",
-   "remote": false,
-   "score": 18,
-   "oneLine": "Elastic makes Search AI products, including Elasticsearch, Kibana, and Logstash, used widely by Fortune 500 firms.",
-   "matches": [
-    "Hands-on Python and process-oriented operational work at Paysetu and Kitebird",
-    "Strong attention to detail shown in reconciling 2 million rows"
-   ],
-   "gaps": [
-    "Requires 3+ years marketing operations or martech experience; candidate has one year in engineering",
-    "No marketing tool administration or enterprise AI platform experience (Jasper, Writer, Firefly)",
-    "No Marketo or Workfront experience shown",
-    "No demonstrated prompt architecture or AI governance background"
-   ],
-   "postedAt": "2026-10-27T09:19:57-04:00",
-   "status": "new"
-  },
-  {
-   "handle": "a4",
-   "company": "Sarvam AI",
-   "title": "Performance Engineer, Inference",
-   "url": "https://jobs.ashbyhq.com/sarvam/7d2faba2-21a1-4a8a-aff5-f708a6959195",
-   "location": "Bengaluru; Chennai; India",
-   "remote": false,
-   "score": 14,
-   "oneLine": "Sarvam AI builds Indic-focused LLMs, speech, and multimodal models with a GPU serving fleet.",
-   "matches": [
-    "Go and PostgreSQL backend work at a payments startup",
-    "Kafka event pipelines with idempotent consumers",
-    "Latency optimization: cut payouts API p95 900ms to 210ms"
-   ],
-   "gaps": [
-    "Only one year of experience versus required 5+ years in ML systems",
-    "No LLM inference serving or GPU experience stated",
-    "No SGLang, vLLM, Dynamo, or TensorRT-LLM source-level fluency",
-    "No speculative decoding, KV cache, or multi-node parallelism experience"
-   ],
-   "postedAt": "2026-08-10T06:33:05.030+00:00",
-   "status": "new"
-  },
-  {
-   "handle": "a3",
-   "company": "Sarvam AI",
-   "title": "Performance Engineer, Kernels",
-   "url": "https://jobs.ashbyhq.com/sarvam/72783205-b637-4431-9a0e-676a8223b063",
-   "location": "Bengaluru; Chennai; India",
-   "remote": false,
-   "score": 12,
-   "oneLine": "Sarvam AI builds Indic-focused LLMs, speech models, and multimodal AI serving infrastructure.",
-   "matches": [
-    "Go and Python backend services on PostgreSQL and Kafka",
-    "Built payments refunds service handling 40,000 refunds daily",
-    "Cut payouts API p95 latency via batching ledger writes",
-    "One year experience, Indian citizen, Bengaluru based"
-   ],
-   "gaps": [
-    "No CUDA or GPU kernel authoring shown in profile",
-    "No CUTLASS, CuTe, PTX, or Nsight experience listed",
-    "No attention kernel or ML systems work; requires 5+ years",
-    "Requires 2+ years production CUDA kernels; profile shows 1 year backend"
-   ],
-   "postedAt": "2026-08-10T06:26:37.057+00:00",
-   "status": "new"
   }
  ],
- "minFit": 70
+ "minFit": 65,
+ "demoNote": {
+  "who": "the author’s own search",
+  "banner": "This is the author’s own job search: real postings, ranked against his resume. Every application here was rehearsed, and nothing was sent."
+ }
 }

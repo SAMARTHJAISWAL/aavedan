@@ -30,9 +30,9 @@ p{font-size:28px;line-height:1.35;margin:26px 0 0;color:#3d362e}.tag{margin-top:
 <p>Finds jobs in India, remote and worldwide, ranks them against your resume, fills each form in Chrome, checks every answer, and sends only what you approve.</p>
 <div class="tag"><span>Greenhouse</span><span>Lever</span><span>Ashby</span><span>Claude</span><span>Playwright</span></div></div>
 <div class="cards">
-<div class="c"><div class="r" style="--p:72"><b>72</b></div><div><div class="t">Infrastructure Engineer</div><div class="s">Sarvam AI · Bengaluru</div></div><span class="ok">✓ 5/5 on page</span></div>
-<div class="c"><div class="r" style="--p:72"><b>72</b></div><div><div class="t">Intermediate Backend Engineer</div><div class="s">GitLab · Bangalore, India</div></div><span class="ok">✓ 18/20 · 2 for you</span></div>
-<div class="c"><div class="r" style="--p:62"><b>62</b></div><div><div class="t">Software Engineer, Spark</div><div class="s">Supabase · Remote, Global</div></div></div>
+<div class="c"><div class="r" style="--p:72"><b>72</b></div><div><div class="t">Intermediate Data Engineer</div><div class="s">GitLab · Bengaluru</div></div><span class="ok">✓ 13/15 · 2 for you</span></div>
+<div class="c"><div class="r" style="--p:62"><b>62</b></div><div><div class="t">Risk Analyst</div><div class="s">Paytm · Bengaluru</div></div><span class="ok">✓ every answer</span></div>
+<div class="c"><div class="r" style="--p:62"><b>62</b></div><div><div class="t">Fraud Analyst</div><div class="s">CRED · Bengaluru</div></div><span class="ok">✓ every answer</span></div>
 </div></body></html>`, { waitUntil: 'networkidle' });
 await og.waitForTimeout(500);
 await og.screenshot({ path: path.join(docs, 'og.png') });

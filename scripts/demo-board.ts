@@ -12,6 +12,8 @@ const dataFile = path.join(ROOT, 'demo', 'board-data.json');
 if (process.argv.includes('--snapshot')) {
   const d = boardData(loadJobs(), loadApplications(), loadProfile(), true);
   d.queue = d.queue.slice(0, 40);
+  // The live demo is the author's own search; contact details and CTC are never part of board data.
+  d.demoNote = { who: 'the author’s own search', banner: 'This is the author’s own job search: real postings, ranked against his resume. Every application here was rehearsed, and nothing was sent.' };
   fs.writeFileSync(dataFile, JSON.stringify(d, null, 1) + '\n');
   console.log(`wrote ${path.relative(ROOT, dataFile)}: ${d.queue.length} jobs, ${d.applications.length} applications`);
 } else {

@@ -10,9 +10,11 @@
 
 It runs on your own computer, using your own Claude API key. There is no server and no account, and nothing about you leaves your machine except the Claude calls themselves.
 
-**[See the board for a made-up candidate →](https://samarthjaiswal.github.io/aavedan/)**
+**[See the board for my own job search →](https://samarthjaiswal.github.io/aavedan/)**
 
-![The aavedan board: jobs ranked by fit for a made-up candidate, from real postings at Sarvam AI, GitLab and Supabase](docs/og.png)
+![aavedan: jobs from real postings at GitLab, Paytm and CRED, ranked against my resume, with each rehearsed form checked](docs/og.png)
+
+The live demo is my own search: real postings ranked against my resume, and three rehearsed applications, with nothing sent. My contact details and CTC never leave my machine.
 
 ## What it does
 
@@ -36,7 +38,7 @@ aavedan find                         aavedan apply a18                         a
  A ranked queue                      and show you what would hold it
 ```
 
-A rehearsal (`apply` without `--send`) does everything except click Submit. This is a real Greenhouse form, filled for the made-up candidate in a rehearsal:
+A rehearsal (`apply` without `--send`) does everything except click Submit. This is a real Greenhouse form, filled in a rehearsal for a made-up test candidate:
 
 <p align="center"><img src="docs/form.png" alt="GitLab's application form on Greenhouse, filled in: name, email, the phone with India's country code, the resume attached, LinkedIn, country of residence India, located in India Yes, and an employment-agreements question left for the candidate" width="560"></p>
 
@@ -125,9 +127,9 @@ A rated job is cached and never rated twice. `aavedan status` shows what you hav
 
 ## Where the jobs come from
 
-These are the public JSON APIs that Greenhouse, Lever and Ashby publish for every company's job board. Nothing is scraped and there is no sign-in. The default list ([src/sources/companies.ts](src/sources/companies.ts)) covers 47 companies, checked live:
+These are the public JSON APIs that Greenhouse, Lever and Ashby publish for every company's job board. Nothing is scraped and there is no sign-in. The default list ([src/sources/companies.ts](src/sources/companies.ts)) covers 52 companies, checked live:
 
-- **Hiring in India:** Paytm, Meesho, CRED, Zeta, Sarvam AI, Groww, InMobi.
+- **Hiring in India:** Paytm, Meesho, CRED, Razorpay, Zeta, Sarvam AI, Groww, Tekion, InMobi.
 - **Global companies with Indian offices:** Databricks, Stripe, MongoDB, Okta, Zscaler, Snowflake.
 - **Remote-first:** GitLab, Supabase, PostHog, Sentry, Linear, and others.
 
@@ -146,7 +148,7 @@ Everything about you stays in `me/`, which is git-ignored:
 - your records;
 - the Chrome profile the tool uses.
 
-Text goes to the Claude API only for the calls above. Tests and the demo use a made-up candidate, Ananya Rao.
+Text goes to the Claude API only for the calls above. Tests use a made-up candidate, Ananya Rao. The live demo shows only my name, the ranked jobs and the rehearsals: no contact details or salary.
 
 ## Development
 

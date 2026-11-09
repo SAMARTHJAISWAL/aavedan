@@ -23,7 +23,8 @@ export interface Field {
 /** Finds every control a person would answer, tags it, and describes it. */
 export function extractFields(): Field[] {
   const ws = (s: string | null | undefined) => (s ?? '').replace(/\s+/g, ' ').trim();
-  const clean = (s: string | null | undefined) => ws(s).replace(/\s*✱.*$/, '').replace(/\s*\*\s*$/, '').trim();
+  // A label element can also wrap the dropdown's own text ("Select... Afghanistan Albania …"); keep only the question.
+  const clean = (s: string | null | undefined) => ws(s).replace(/\s*✱.*$/, '').replace(/\s+(Select|Choose)(\.\.\.|…)\s.*$/, '').replace(/\s*\*\s*$/, '').trim();
   const starred = (raw: string) => /✱|\*\s*$/.test(raw);
   const visible = (el: Element) => {
     const r = (el as HTMLElement).getBoundingClientRect();

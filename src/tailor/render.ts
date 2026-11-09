@@ -26,6 +26,7 @@ h1 { font-size: 20pt; margin: 0; letter-spacing: -0.01em; }
 h2 { font-size: 9pt; text-transform: uppercase; letter-spacing: .12em; color: #8a3b12; border-bottom: .6pt solid #d8c7b8; padding-bottom: 2pt; margin: 11pt 0 4pt; }
 .row { display: flex; justify-content: space-between; gap: 8pt; }
 .row b { font-weight: 650; }
+.row > span:last-child { white-space: nowrap; flex: none; }
 .muted { color: #5b6069; }
 ul { margin: 2pt 0 5pt; padding-left: 12pt; }
 li { margin: 1pt 0; }

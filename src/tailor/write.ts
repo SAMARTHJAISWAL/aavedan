@@ -30,6 +30,8 @@ export type LetterDraft = z.infer<typeof LetterDraft>;
 const RESUME_SYSTEM = `You tailor a candidate's resume to one job posting. You choose and rephrase; you never add.
 
 - Pick the experience entries and projects (by index) that matter most for this posting, most relevant first, and rewrite their bullets to lead with what this posting cares about.
+- The headline is short (under 12 words): a title they have held, then two or three strengths, e.g. "Junior Developer, BI & Analytics · SQL · ETL · Power BI".
+- The headline and summary describe the candidate by job titles they have actually held, or their degree. Never give them a title they have not held (a "Junior Developer, BI & Analytics" is not a "Data Engineer"), even when the posting uses one.
 - Every bullet must restate something the profile says. Keep every number exactly as the profile gives it; never add a number, a tool, a team size or an outcome.
 - Group the skills the profile lists that this posting values; leave out the rest. Do not add skills the profile does not list.
 - List the posting's important keywords that the profile does not support in keywordsNotSupported, never in the resume.

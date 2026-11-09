@@ -23,6 +23,11 @@ export const DEFAULT_COMPANIES: Company[] = [
   c('HackerRank', 'greenhouse', 'hackerrank', 'Bengaluru'),
   c('Druva', 'greenhouse', 'druva', 'Pune'),
   c('Observe.AI', 'greenhouse', 'observeai', 'Bengaluru'),
+  c('Razorpay', 'greenhouse', 'razorpaysoftwareprivatelimited', 'Bengaluru'),
+  c('Tekion', 'ashby', 'tekion', 'Bengaluru, Chennai'),
+  c('Atlys', 'ashby', 'atlys', 'Bengaluru'),
+  c('Hevo Data', 'lever', 'hevodata', 'Bengaluru'),
+  c('Mindtickle', 'lever', 'mindtickle', 'Pune'),
   // Global companies with Indian offices
   c('Databricks', 'greenhouse', 'databricks', 'Bengaluru, San Francisco'),
   c('Stripe', 'greenhouse', 'stripe', 'Bengaluru, San Francisco'),
