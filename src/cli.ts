@@ -254,8 +254,9 @@ async function main() {
           if (out.status === 'quit') break;
         }
       } finally {
-        if (!interactive || !send || !Object.keys(tally).includes('held')) await ctx.close().catch(() => {});
-        else say('\nHeld forms are still open in Chrome. Close the window when you are done.');
+        // Held forms stay open for the person to finish; Chrome closes when they press Enter, never left behind.
+        if (interactive && send && Object.keys(tally).includes('held')) await prompt('\nHeld forms are open in Chrome. Finish them there if you like, then press Enter to close it. ').catch(() => '');
+        await ctx.close().catch(() => {});
       }
       say(`\n${Object.entries(tally).map(([k, v]) => `${v} ${k}`).join(' · ')}. Records: me/applications.csv`);
       break;
@@ -323,6 +324,9 @@ async function main() {
       say(HELP);
   }
 }
+
+// Ctrl+C at a question: stop cleanly; the browser is closed by Playwright when the process ends.
+process.on('SIGINT', () => { process.stdout.write('\nStopped. Nothing more was sent.\n'); process.exit(130); });
 
 main().catch(e => {
   process.stderr.write(`aavedan: ${(e as Error).message}\n`);

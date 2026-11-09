@@ -115,6 +115,8 @@ export async function applyOne(opts: { ctx: BrowserContext; llm: Llm; profile: P
     const memory = loadMemory();
     let steps = await plan({ llm, profile, job, fields, memory, files: { resume, cover } });
 
+    // An optional question nobody can answer from the profile is left empty, not asked.
+    for (const s of steps) if (s.action === 'ask' && !s.field.required) { s.action = 'skip'; s.source = 'optional, left empty'; }
     // What only the person knows.
     for (const s of steps.filter(x => x.action === 'ask')) {
       const ans = await io.ask(s.field.label + (s.source ? `  (${s.source})` : ''), s.field.options, s.field.multi);

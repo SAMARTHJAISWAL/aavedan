@@ -94,15 +94,21 @@ const io = (over: Partial<Io> = {}): Io & { asked: string[] } => {
 };
 
 describe('an application from start to finish', () => {
-  it('rehearses without sending, and asks only what the profile cannot answer', async () => {
+  it('rehearses without sending, asks only required questions the profile cannot answer, and leaves optional ones', async () => {
+    const strict = plainForm.replace('<form>', '<form method="post" action="/submit" enctype="multipart/form-data">').replace('name="office" value="y"', 'name="office" value="y" required');
+    const handler = server.listeners('request')[0] as http.RequestListener;
+    server.removeAllListeners('request');
+    server.on('request', (req, res) => (req.method === 'GET' && req.url === '/' ? (res.writeHead(200, { 'content-type': 'text/html' }), res.end(strict)) : handler(req, res)));
     const people = io();
     const out = await applyOne({ ctx, llm: fakeClaude, profile: ananya, q: job(), io: people, send: false, tailorFirst: false, cover: false });
     expect(out.status).toBe('rehearsed');
     expect(out.reason).toBeNull();
     expect(posted).toBeNull();
-    expect(people.asked.map(q => q.split('  (')[0])).toEqual(['Are you willing to work from our Bengaluru office?', 'I agree to the privacy policy']);
-    // The person's answers are kept for the next form.
-    expect(readJson<{ question: string; answer: string }[]>(paths.answers, []).map(m => m.answer)).toEqual(['Yes', 'I agree to the privacy policy']);
+    expect(people.asked.map(q => q.split('  (')[0])).toEqual(['Are you willing to work from our Bengaluru office?']);
+    // The person's answer is kept for the next form.
+    expect(readJson<{ question: string; answer: string }[]>(paths.answers, []).map(m => m.answer)).toEqual(['Yes']);
+    server.removeAllListeners('request');
+    server.on('request', handler);
   }, 60_000);
 
   it('sends after a yes, sees the confirmation, and records every answer', async () => {

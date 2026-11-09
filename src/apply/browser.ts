@@ -2,6 +2,19 @@
 import { chromium, type BrowserContext, type Page } from 'playwright-core';
 import fs from 'node:fs';
 import { paths } from '../config.ts';
+import { execFileSync } from 'node:child_process';
+
+/** Ends Chrome processes started with aavedan's profile directory, and nothing else. */
+function closeLeftover(): void {
+  if (process.platform === 'win32') return;
+  try {
+    const out = execFileSync('ps', ['-axo', 'pid=,command='], { encoding: 'utf8' });
+    for (const line of out.split('\n')) {
+      const m = line.trim().match(/^(\d+)\s+(.*)$/);
+      if (m && m[2]!.includes(`--user-data-dir=${paths.chromeProfile}`) && !m[2]!.includes('--type=')) process.kill(Number(m[1]), 'SIGTERM');
+    }
+  } catch { /* nothing to close */ }
+}
 
 export async function openBrowser(opts: { headless?: boolean } = {}): Promise<BrowserContext> {
   fs.mkdirSync(paths.chromeProfile, { recursive: true });
@@ -15,6 +28,12 @@ export async function openBrowser(opts: { headless?: boolean } = {}): Promise<Br
   try {
     return await launch('chrome');
   } catch (e) {
+    if (/already in use|existing browser session/i.test((e as Error).message)) {
+      // A window from an earlier run that did not close. It uses aavedan's own profile, never the user's Chrome.
+      closeLeftover();
+      await new Promise(r => setTimeout(r, 1500));
+      return launch('chrome');
+    }
     if (!/executable|not found|install/i.test((e as Error).message)) throw e;
     return launch(undefined); // A Playwright-installed Chromium, when Chrome itself is missing.
   }
