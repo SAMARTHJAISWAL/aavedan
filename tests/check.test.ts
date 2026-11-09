@@ -53,3 +53,23 @@ describe('options and read-back', () => {
     expect(shows('checkbox', 'checkbox', ['India', 'Singapore'], 'India; Singapore')).toBe(true);
   });
 });
+
+import { answerAllowed } from '../src/apply/plan.ts';
+describe('questions only the person can answer', () => {
+  it('are never answered without the person, even when the model offers an answer', () => {
+    expect(answerAllowed('Have you previously worked at or consulted for GitLab?', ananya, [])).toBe(false);
+    expect(answerAllowed('Are you subject to any employment agreements and/or post-employment restrictions?', ananya, [])).toBe(false);
+    expect(answerAllowed('Do you have a relative working at Groww?', ananya, [])).toBe(false);
+    expect(answerAllowed('Were you referred by an employee?', ananya, [])).toBe(false);
+    expect(answerAllowed('Do you consent to a background verification?', ananya, [])).toBe(false);
+  });
+  it('are answered once the person has answered them before', () => {
+    const memory = [{ question: 'Have you previously worked at or consulted for GitLab?', answer: 'No', at: '' }];
+    expect(answerAllowed('Have you previously worked at or consulted for GitLab?', ananya, memory)).toBe(true);
+  });
+  it('leave ordinary questions alone, and let salary use the CTC in the profile', () => {
+    expect(answerAllowed('What is your current country of residence?', ananya, [])).toBe(true);
+    expect(answerAllowed('What is your expected CTC?', ananya, [])).toBe(true);
+    expect(answerAllowed('What is your expected CTC?', { ...ananya, currentCtcLpa: null, expectedCtcLpa: null }, [])).toBe(false);
+  });
+});

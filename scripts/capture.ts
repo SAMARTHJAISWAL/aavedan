@@ -48,6 +48,8 @@ if (ref && fs.existsSync(paths.profile)) {
   const fields = await scan(page);
   const steps = await plan({ llm: claude, profile: loadProfile(), job: q.job, fields, memory: [], files: { resume: paths.resume, cover: null } });
   for (const s of steps) if (s.action === 'answer') await fillOne(page, s.field, { id: s.field.id, value: s.value });
+  // The README is public: blur contact details in the screenshot.
+  await page.addStyleTag({ content: 'input[type=email], input[type=tel], input[name=email], input[name=phone], #email, #phone { filter: blur(7px); }' });
   await page.evaluate(() => window.scrollTo(0, 0));
   const first = page.locator('[data-aavedan]').first();
   const box = await first.boundingBox();

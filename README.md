@@ -38,15 +38,15 @@ aavedan find                         aavedan apply a18                         a
  A ranked queue                      and show you what would hold it
 ```
 
-A rehearsal (`apply` without `--send`) does everything except click Submit. This is a real Greenhouse form, filled in a rehearsal for a made-up test candidate:
+A rehearsal (`apply` without `--send`) does everything except click Submit. This is GitLab's real Greenhouse form, filled from my own resume in a rehearsal. My email and phone are blurred here. The two questions only I can answer are left for me:
 
-<p align="center"><img src="docs/form.png" alt="GitLab's application form on Greenhouse, filled in: name, email, the phone with India's country code, the resume attached, LinkedIn, country of residence India, located in India Yes, and an employment-agreements question left for the candidate" width="560"></p>
+<p align="center"><img src="docs/form.png" alt="GitLab's application form on Greenhouse, filled in for Samarth Jaiswal: name, blurred email and phone with India's country code, the resume attached, country of residence India, no visa sponsorship needed, LinkedIn, and the questions about past work at GitLab and employment agreements left for him to answer" width="560"></p>
 
 ## What it never does
 
 - **It never invents a fact.** Your profile (`me/profile.json`) is the only source. Every number and every proper name in a tailored resume, cover letter or written answer is checked *in code* against your profile and the posting. Anything unsupported is rewritten once, then dropped. Keywords the posting wants and your profile doesn't show are listed for you, never slipped in.
 - **It never bends your work rights to fit a form.** Questions about authorization and sponsorship are answered from your profile. Code rejects any answer that disagrees with it, and the form waits for you.
-- **It never guesses what only you know.** That covers a past job at the company, a referral, a consent, a background check, or a salary figure you haven't given. It asks you once and remembers the answer for the next form.
+- **It never guesses what only you know.** That covers a past job at the company, a referral, a relative there, an employment agreement, a consent, a background check, or a salary figure you haven't given. Code enforces it: even when Claude offers an answer to one of these, it is thrown away and you are asked. Your answer is remembered for the next form.
 - **It never sends without your yes.** At the keyboard you approve each form. In Claude Code, you approve each job by name, in the chat.
 - **It never touches a human check.** If a board shows a CAPTCHA, the form waits in its tab for you.
 - **It never works around a board that says no.** Some boards (Lever, for one) reject applications from an automated browser. aavedan then **hands off**: the tailored resume goes to your Downloads folder, an answer sheet with a Copy button for every answer opens in your own browser next to the form, and you click Submit yourself. It remembers the board, so later applications there go straight to hand-off. `aavedan done <id>` records it as sent.
@@ -116,7 +116,7 @@ A posting link from any Greenhouse, Lever or Ashby board works in place of an id
 
 ## What it costs
 
-These are measured on real runs with the made-up candidate:
+These are measured on real runs:
 
 | Step | Model | Cost |
 |---|---|---|
@@ -150,12 +150,12 @@ Everything about you stays in `me/`, which is git-ignored:
 - your records;
 - the Chrome profile the tool uses.
 
-Text goes to the Claude API only for the calls above. Tests use a made-up candidate, Ananya Rao. The live demo shows only my name, the ranked jobs and the rehearsals: no contact details or salary.
+Text goes to the Claude API only for the calls above. The live demo and the screenshots show only my name, the ranked jobs and the rehearsals: no contact details or salary. The automated tests use a made-up test profile, so no real person's data is in the code.
 
 ## Development
 
 ```bash
-npm test          # 59 tests: rules, board readers, fact check, and browser tests on local forms
+npm test          # 62 tests: rules, board readers, fact check, and browser tests on local forms
 npm run typecheck
 ```
 

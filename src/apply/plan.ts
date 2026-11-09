@@ -83,6 +83,23 @@ export function workRightConflict(label: string, value: string, profile: Profile
   return false;
 }
 
+/** Questions only the person can answer. The model is never trusted to answer these on its own. */
+const PERSONAL = /previously (worked|been employed|employed)|ever (worked|been employed)|worked (at|for) [^?]* before|former employee|relative|family member|referr|referred|non-compete|employment agreement|post-employment|restrictions? with your (current|past|previous)|background (check|verification)|consent|criminal|convicted|salary|ctc|compensation expectation/i;
+
+const sameQuestion = (a: string, b: string) => {
+  const n = (s: string) => s.toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').replace(/\s+/g, ' ').trim();
+  return n(a) === n(b);
+};
+
+/** True when this answer may stand: not a personal question, or the person answered it before. */
+export function answerAllowed(label: string, profile: Profile, memory: Memory[]): boolean {
+  if (!PERSONAL.test(label)) return true;
+  if (memory.some(m => sameQuestion(m.question, label))) return true;
+  // Salary questions may use the CTC the person put in their profile.
+  if (/salary|ctc|compensation/i.test(label) && (profile.currentCtcLpa != null || profile.expectedCtcLpa != null)) return true;
+  return false;
+}
+
 export async function plan(opts: { llm: Llm; profile: Profile; job: Job; fields: Field[]; memory: Memory[]; files: { resume: string; cover: string | null } }): Promise<Step[]> {
   const { llm, profile, job, fields, memory } = opts;
   const steps: Step[] = [];
@@ -114,6 +131,9 @@ export async function plan(opts: { llm: Llm; profile: Profile; job: Job; fields:
       else if (['select', 'radio', 'checkbox'].includes(f.kind) || (f.kind === 'combobox' && f.options.length)) {
         const picked = step.value.map(v => pickOption(f.options, v));
         step = picked.every(Boolean) ? { ...step, value: picked as string[] } : { ...step, action: 'ask', value: [], source: `“${step.value.join(', ')}” is not one of the options` };
+      }
+      if (step.action === 'answer' && !answerAllowed(f.label, profile, memory)) {
+        step = { ...step, action: 'ask', value: [], source: 'only you can answer this' };
       }
       if (step.action === 'answer' && workRightConflict(f.label, step.value[0] ?? '', profile, job)) {
         step = { ...step, action: 'ask', value: [], source: 'work authorization answer disagreed with your profile' };
