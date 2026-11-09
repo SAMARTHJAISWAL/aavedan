@@ -40,7 +40,7 @@ aavedan find                         aavedan apply a18                         a
 
 A rehearsal (`apply` without `--send`) does everything except click Submit. This is GitLab's real Greenhouse form, filled from my own resume in a rehearsal. My email and phone are blurred here. The two questions only I can answer are left for me:
 
-<p align="center"><img src="docs/form.png" alt="GitLab's application form on Greenhouse, filled in for Samarth Jaiswal: name, blurred email and phone with India's country code, the resume attached, country of residence India, no visa sponsorship needed, LinkedIn, and the questions about past work at GitLab and employment agreements left for him to answer" width="560"></p>
+<p align="center"><img src="docs/rehearsal-samarth.png" alt="GitLab's application form on Greenhouse, filled in for Samarth Jaiswal: name, blurred email and phone with India's country code, the resume attached, country of residence India, no visa sponsorship needed, LinkedIn, and the questions about past work at GitLab and employment agreements left for him to answer" width="560"></p>
 
 ## What it never does
 

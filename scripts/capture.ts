@@ -1,4 +1,4 @@
-// Makes the README images: docs/og.png (share card) and docs/form.png (a real form, filled in rehearsal).
+// Makes the README images: docs/og.png (share card) and docs/rehearsal-samarth.png (a real form, filled in rehearsal).
 // AAVEDAN_HOME=<a home with the made-up profile> node scripts/capture.ts [job id]
 import fs from 'node:fs';
 import path from 'node:path';
@@ -53,7 +53,7 @@ if (ref && fs.existsSync(paths.profile)) {
   await page.evaluate(() => window.scrollTo(0, 0));
   const first = page.locator('[data-aavedan]').first();
   const box = await first.boundingBox();
-  await page.screenshot({ path: path.join(docs, 'form.png'), clip: { x: 0, y: Math.max(0, (box?.y ?? 0) - 60), width: 900, height: 1000 } , fullPage: true });
-  console.log('wrote docs/form.png');
+  await page.screenshot({ path: path.join(docs, 'rehearsal-samarth.png'), clip: { x: 0, y: Math.max(0, (box?.y ?? 0) - 60), width: 900, height: 1000 } , fullPage: true });
+  console.log('wrote docs/rehearsal-samarth.png');
 }
 await browser.close();
