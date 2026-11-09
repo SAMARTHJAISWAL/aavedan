@@ -22,8 +22,8 @@ The live demo is my own search: real postings ranked against my resume, and thre
 aavedan find                         aavedan apply a18                         aavedan apply a18 --send
      │                                    │                                          │
      ▼                                    ▼                                          ▼
- Read ~10,500 postings from           Open the form in Chrome, read            Read the page once more,
- Greenhouse, Lever and Ashby         every question, its options,             click Submit, wait for the
+ Read ~10,500 postings from          Open the form in Chrome, read            Read the page once more,
+ company boards and job feeds       every question, its options,             click Submit, wait for the
      │                               and whether it is required               board's confirmation
      ▼                                    │                                          │
  Rules, no model: place, level,           ▼                                          ▼
