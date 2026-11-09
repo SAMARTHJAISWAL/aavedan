@@ -53,6 +53,10 @@ describe('yearsAsked', () => {
     ['4 to 6 yrs exp in Java', 4],
     ['We were founded 10 years ago and serve 3 million users', null],
     ['Requirements: 7+ years of industry experience; 3+ years leading teams', 7],
+    ['• 5–7 years in business analytics, growth analytics', 5],
+    ['Experience: 5+ Years', 5],
+    ['You have 3-6 years of full-time experience in product analytics', 3],
+    ['3+ years as a data analyst', 3],
   ])('%s', (text, years) => expect(yearsAsked(text)).toBe(years));
 });
 
@@ -92,6 +96,8 @@ describe('remote that is not really open to everyone', () => {
     expect(placeOf(job({ locations: ['Remote', 'US | EU'], remote: true })).remote).toBe('restricted');
     expect(placeOf(job({ locations: ['Remote, Global'], remote: true })).remote).toBe('global');
     expect(placeOf(job({ locations: ['Remote - APAC'], remote: true })).remote).toBe('india');
+    expect(placeOf(job({ locations: ['Remote - Philippines'], remote: true })).remote).toBe('restricted');
+    expect(placeOf(job({ locations: ['Remote - Worldwide'], remote: true })).remote).toBe('global');
   });
   it('does not count analyst roles as engineering unless you asked for them', () => {
     expect(judge(job({ title: 'Fraud Analyst' }), ananya).pass).toBe(false);

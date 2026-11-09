@@ -72,6 +72,8 @@ export function placeOf(job: Pick<Job, 'locations' | 'remote'>): Place {
     else if (/anywhere|worldwide|global/i.test(text)) remote = 'global';
     // A board's remote flag on a posting that names only a city is hybrid in that city, not open to all.
     else if (countries.length || region || (!saysRemote && text.trim())) remote = 'restricted';
+    // "Remote - Philippines", "Remote (Brazil)": a named place that is not India or worldwide.
+    else if (/remote\s*[-–,(:|]\s*(?!remote\b|worldwide|anywhere|global|india|apac|asia)[a-z]{3,}/i.test(text)) remote = 'restricted';
     else remote = 'global';
   }
   return { indiaCities, indiaAny, countries, remote };
@@ -96,12 +98,17 @@ const WORD_NUM: Record<string, number> = { one: 1, two: 2, three: 3, four: 4, fi
 /** The smallest number of years of experience the posting asks for, or null when it asks for none. */
 export function yearsAsked(description: string): number | null {
   const n = String.raw`(\d{1,2}|one|two|three|four|five|six|seven|eight|nine|ten)`;
-  const re = new RegExp(String.raw`(?:minimum (?:of )?|at least |)${n}\s*(?:\+|plus)?\s*(?:-|–|to)?\s*(?:\d{1,2}\s*)?\+?\s*(?:years?|yrs?)(?:'s)?\s+(?:of\s+)?(?:\w+\s+){0,4}?(?:experience|exp\b|industry|professional|hands-on|work)`, 'gi');
+  const re = new RegExp(String.raw`(?:minimum (?:of )?|at least |)${n}\s*(?:\+|plus)?\s*(?:-|–|to)?\s*(?:\d{1,2}\s*)?\+?\s*(?:years?|yrs?)(?:'s)?\s+(?:of\s+)?(?:[\w-]+\s+){0,4}?(?:experience|exp\b|industry|professional|hands-on|work)`, 'gi');
+  // Also: "5–7 years in business analytics", "3+ years as a data analyst", "Experience: 5+ Years".
+  const inField = new RegExp(String.raw`\b${n}\s*(?:\+|plus)?\s*(?:(?:-|–|to)\s*\d{1,2}\s*)?\+?\s*(?:years?|yrs?)\s+(?:in|as|working|building|of\s+(?:[\w-]+\s+){0,3}?(?:experience|work))\b`, 'gi');
+  const labelled = new RegExp(String.raw`experience\s*(?:required)?\s*[:\-–(]\s*${n}\s*\+?\s*(?:(?:-|–|to)\s*\d{1,2}\s*)?(?:years?|yrs?)`, 'gi');
   const found: number[] = [];
-  for (const m of description.matchAll(re)) {
-    const raw = m[1]!.toLowerCase();
-    const v = WORD_NUM[raw] ?? Number(raw);
-    if (v > 0 && v <= 20) found.push(v);
+  for (const r of [re, inField, labelled]) {
+    for (const m of description.matchAll(r)) {
+      const raw = m[1]!.toLowerCase();
+      const v = WORD_NUM[raw] ?? Number(raw);
+      if (v > 0 && v <= 20) found.push(v);
+    }
   }
   return found.length ? Math.min(...found) : null;
 }

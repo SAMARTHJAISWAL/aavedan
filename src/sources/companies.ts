@@ -23,6 +23,7 @@ export const DEFAULT_COMPANIES: Company[] = [
   c('HackerRank', 'greenhouse', 'hackerrank', 'Bengaluru'),
   c('Druva', 'greenhouse', 'druva', 'Pune'),
   c('Observe.AI', 'greenhouse', 'observeai', 'Bengaluru'),
+  c('eClinical Solutions', 'greenhouse', 'eclinicalsolutions', 'Bengaluru, Mansfield MA'),
   c('Razorpay', 'greenhouse', 'razorpaysoftwareprivatelimited', 'Bengaluru'),
   c('Tekion', 'ashby', 'tekion', 'Bengaluru, Chennai'),
   c('Atlys', 'ashby', 'atlys', 'Bengaluru'),
