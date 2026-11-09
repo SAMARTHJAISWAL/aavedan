@@ -17,7 +17,17 @@ describe('more sources', () => {
     expect(placeOf(j!).indiaCities).toEqual(['Bengaluru']);
   });
 
-  it('recognises SmartRecruiters and Workable links', () => {
+  it('reads Keka jobs, and puts the stated experience where the years rule sees it', async () => {
+    const { fromKeka } = await import('../src/sources/more.ts');
+    const j = fromKeka({ name: 'SatSure', board: 'keka', slug: 'satsure' }, { id: 42, title: 'Data Analyst', experience: '1-3 years', description: '<p>SQL and Python</p>', jobLocations: [{ city: 'Bengaluru ', state: 'KA' }], publishedOn: '2026-11-01T00:00:00Z' });
+    expect(j).toMatchObject({ id: 'keka:satsure:42', url: 'https://satsure.keka.com/careers/jobdetails/42', locations: ['Bengaluru, KA, India'] });
+    expect(j.description).toContain('Experience: 1-3 years of experience');
+    expect(judge(j, ananya).pass).toBe(true);
+    expect(judge(fromKeka({ name: 'S', board: 'keka', slug: 's' }, { ...{ id: 1, title: 'Data Engineer', experience: '5-8 years', jobLocations: [{ city: 'Bengaluru' }] } }), ananya).reason).toBe('asks for 5+ years');
+  });
+
+  it('recognises SmartRecruiters, Workable and Keka links', () => {
+    expect(parseLink('https://satsure.keka.com/careers/jobdetails/42')).toEqual({ board: 'keka', slug: 'satsure', postingId: '42' });
     expect(parseLink('https://jobs.smartrecruiters.com/SWIGGY/6000000001561277-city-head')).toEqual({ board: 'smartrecruiters', slug: 'SWIGGY', postingId: '6000000001561277' });
     expect(parseLink('https://apply.workable.com/apna/j/CFBDFBDDC5/')).toEqual({ board: 'workable', slug: 'apna', postingId: 'CFBDFBDDC5' });
   });

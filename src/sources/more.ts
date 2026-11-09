@@ -91,6 +91,40 @@ export async function describe(job: Job): Promise<string> {
   return '';
 }
 
+// ---------- Keka ----------
+
+interface KekaJob {
+  id: number | string; title: string; description?: string; departmentName?: string; experience?: string;
+  jobLocations?: { name?: string; city?: string; state?: string; countryName?: string }[]; publishedOn?: string;
+}
+
+/** Keka careers pages carry the portal id that unlocks their public jobs list (the one their own site uses). */
+async function kekaPortalId(tenant: string): Promise<string | null> {
+  const r = await fetch(`https://${tenant}.keka.com/careers/`, { headers: UA, signal: AbortSignal.timeout(20_000) });
+  if (!r.ok) return null;
+  return (await r.text()).match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/)?.[0] ?? null;
+}
+
+export function fromKeka(c: Company, j: KekaJob): Job {
+  const locs = (j.jobLocations ?? []).map(l => [l.city?.trim(), l.state?.trim(), l.countryName?.trim() || 'India'].filter(Boolean).join(', '));
+  const url = `https://${c.slug}.keka.com/careers/jobdetails/${j.id}`;
+  return {
+    id: id('keka', c.slug, String(j.id)), board: 'keka', company: c.name, companySlug: c.slug, postingId: String(j.id),
+    title: j.title.trim(), locations: [...new Set(locs)], remote: locs.some(l => /remote/i.test(l)) || /remote/i.test(j.title),
+    department: j.departmentName ?? null, url, applyUrl: url, postedAt: j.publishedOn ?? null,
+    // Keka states experience as a field; put it in the text so the years rule sees it.
+    description: [j.experience ? `Experience: ${j.experience} of experience` : '', htmlToText(j.description ?? '')].filter(Boolean).join('\n\n'),
+    via: null,
+  };
+}
+
+export async function listKeka(c: Company): Promise<Job[]> {
+  const portal = await kekaPortalId(c.slug);
+  if (!portal) return [];
+  const d = (await getJson(`https://${c.slug}.keka.com/careers/api/embedjobs/default/active/${portal}`)) as KekaJob[] | null;
+  return (Array.isArray(d) ? d : []).map(j => fromKeka(c, j));
+}
+
 // ---------- Remote-job feeds ----------
 
 /** The feeds ask callers not to fetch more than a few times a day; results are cached for six hours. */

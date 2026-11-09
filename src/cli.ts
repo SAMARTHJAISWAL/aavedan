@@ -58,7 +58,7 @@ const HELP = `aavedan · आवेदन — find jobs, tailor your resume, fill
   aavedan skip <a12 ...>           drop jobs from the queue
   aavedan status                   where you stand, and what Claude has cost
   aavedan board [--open]           your applications and queue as a page: me/board.html
-  aavedan add-company <board link> read another company's Greenhouse, Lever, Ashby, SmartRecruiters or Workable board too
+  aavedan add-company <board link> read another company's Greenhouse, Lever, Ashby, SmartRecruiters, Workable or Keka board too
   aavedan add-job <any link>       one posting from anywhere (a careers page, Naukri, LinkedIn): read, rate, queue
   aavedan answers                  the answers you gave forms, which are reused
   aavedan answer "<q>" "<a>"       save an answer to a question a form asked

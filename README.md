@@ -22,7 +22,7 @@ The live demo is my own search: real postings ranked against my resume, and thre
 aavedan find                         aavedan apply a18                         aavedan apply a18 --send
      │                                    │                                          │
      ▼                                    ▼                                          ▼
- Read ~10,500 postings from          Open the form in Chrome, read            Read the page once more,
+ Read ~10,800 postings from          Open the form in Chrome, read            Read the page once more,
  company boards and job feeds       every question, its options,             click Submit, wait for the
      │                               and whether it is required               board's confirmation
      ▼                                    │                                          │
@@ -131,14 +131,15 @@ A rated job is cached and never rated twice. `aavedan status` shows what you hav
 
 Only sources that publish their listings openly. Nothing is scraped and nothing needs a sign-in.
 
-- **Company job boards** on five hiring platforms: Greenhouse, Lever, Ashby, SmartRecruiters and Workable. The default list ([src/sources/companies.ts](src/sources/companies.ts)) covers 56 companies:
+- **Company job boards** on six hiring platforms: Greenhouse, Lever, Ashby, SmartRecruiters, Workable and **Keka**, which many Indian startups use. The default list ([src/sources/companies.ts](src/sources/companies.ts)) covers 71 companies:
   - **Hiring in India:** Swiggy, Paytm, Meesho, CRED, Razorpay, Freshworks, Zeta, Sarvam AI, Groww, Tekion and InMobi.
+  - **On Keka:** Jupiter, Cars24, Snitch, Eloelo, SatSure, Signzy, Zluri, Loop, WebEngage, Kuku FM, Teachmint, Niyo and others.
   - **Global companies with Indian offices:** Bosch, ServiceNow, Databricks, Stripe, MongoDB, Okta, Zscaler and Snowflake.
   - **Remote-first:** GitLab, Supabase, PostHog, Sentry, Linear and others.
 - **Remote-job feeds:** [Remotive](https://remotive.com), [Remote OK](https://remoteok.com), [Himalayas](https://himalayas.app) and [Jobicy](https://jobicy.com). Each listing is credited "via" its feed and links back to the feed's own page, as their terms ask. Feeds are read at most every six hours.
 - **One posting from anywhere:** `aavedan add-job <link>` reads a single page you send it, the way your browser would, and uses the job data most careers pages publish for search engines.
 
-A run reads about 10,500 postings. Add any other company with `aavedan add-company <board link>`.
+A run reads about 10,800 postings. Add any other company with `aavedan add-company <board link>`.
 
 Naukri, LinkedIn and X are left out on purpose. They offer no open listings, and their terms forbid scraping and automated applying. Send aavedan a posting link instead. If its Apply button leads to a company careers page, that page works.
 
@@ -158,7 +159,7 @@ Text goes to the Claude API only for the calls above. The live demo and the scre
 ## Development
 
 ```bash
-npm test          # 67 tests: rules, board readers, fact check, and browser tests on local forms
+npm test          # 68 tests: rules, board readers, fact check, and browser tests on local forms
 npm run typecheck
 ```
 

@@ -109,6 +109,7 @@ export async function listJobs(c: Company): Promise<Job[]> {
   switch (c.board) {
     case 'smartrecruiters': return (await import('./more.ts')).listSmartRecruiters(c);
     case 'workable': return (await import('./more.ts')).listWorkable(c);
+    case 'keka': return (await import('./more.ts')).listKeka(c);
     case 'greenhouse': {
       const d = (await getJson(`https://boards-api.greenhouse.io/v1/boards/${c.slug}/jobs?content=true`)) as { jobs?: GhJob[] } | null;
       return (d?.jobs ?? []).map(j => fromGreenhouse(c, j));
@@ -151,6 +152,10 @@ export function parseLink(raw: string): ParsedLink | null {
   }
   if (host === 'jobs.smartrecruiters.com' || host === 'careers.smartrecruiters.com') {
     return parts[0] ? { board: 'smartrecruiters', slug: parts[0], postingId: parts[1]?.split('-')[0] ?? null } : null;
+  }
+  const keka = host.match(/^([a-z0-9-]+)\.keka\.com$/);
+  if (keka && parts[0] === 'careers') {
+    return { board: 'keka', slug: keka[1]!, postingId: parts[1] === 'jobdetails' ? parts[2] ?? null : null };
   }
   if (host === 'apply.workable.com') {
     return parts[0] ? { board: 'workable', slug: parts[0], postingId: parts[1] === 'j' ? parts[2] ?? null : null } : null;
