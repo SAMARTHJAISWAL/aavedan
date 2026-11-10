@@ -4,6 +4,7 @@ import type { Llm } from '../llm.ts';
 import type { Company, Job } from '../sources/types.ts';
 import { listJobs } from '../sources/boards.ts';
 import { FEEDS, describe } from '../sources/more.ts';
+import { alertsConfigured, loadAlerts } from '../sources/alerts.ts';
 import { judge } from './filter.ts';
 import { rankJob } from './rank.ts';
 import { loadJobs, saveJobs, type QueuedJob } from './store.ts';
@@ -21,7 +22,7 @@ export interface FindReport {
   dropped: Record<string, number>;
 }
 
-export async function find(opts: { llm: Llm; profile: Profile; companies: Company[]; rankLimit?: number; log?: (s: string) => void; fetcher?: (c: Company) => Promise<Job[]>; feeds?: boolean }): Promise<FindReport> {
+export async function find(opts: { llm: Llm; profile: Profile; companies: Company[]; rankLimit?: number; log?: (s: string) => void; fetcher?: (c: Company) => Promise<Job[]>; feeds?: boolean; alerts?: () => Promise<Job[]> }): Promise<FindReport> {
   const log = opts.log ?? (() => {});
   const fetcher = opts.fetcher ?? listJobs;
   const failed: string[] = [];
@@ -44,10 +45,19 @@ export async function find(opts: { llm: Llm; profile: Profile; companies: Compan
       }
     }
   }
+  // LinkedIn and Naukri, from the job-alert emails in the person's Gmail.
+  const alertLoader = opts.alerts ?? (opts.feeds !== false && alertsConfigured() ? () => loadAlerts() : null);
+  if (alertLoader) {
+    try {
+      fromFeeds.push(...(await alertLoader()));
+    } catch (e) {
+      failed.push(`Gmail job alerts (${(e as Error).message})`);
+    }
+  }
   // The same job often appears on a company board and a feed; keep the company board's copy.
   const seenTitle = new Set(lists.flat().map(j => `${j.company.toLowerCase()}|${j.title.toLowerCase()}`));
   const all = [...lists.flat(), ...fromFeeds.filter(j => !seenTitle.has(`${j.company.toLowerCase()}|${j.title.toLowerCase()}`))];
-  log(`Read ${all.length} postings: ${lists.flat().length} from ${opts.companies.length - failed.length} company boards, ${all.length - lists.flat().length} from remote-job feeds.`);
+  log(`Read ${all.length} postings: ${lists.flat().length} from ${opts.companies.length - failed.length} company boards, ${all.length - lists.flat().length} from remote-job feeds and job alerts.`);
 
   const file = loadJobs();
   const now = new Date().toISOString();

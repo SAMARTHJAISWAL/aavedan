@@ -129,7 +129,7 @@ A rated job is cached and never rated twice. `aavedan status` shows what you hav
 
 ## Where the jobs come from
 
-Only sources that publish their listings openly. Nothing is scraped and nothing needs a sign-in.
+Only sources that publish their listings openly, plus the job alerts LinkedIn and Naukri email you. Nothing is scraped.
 
 - **Company job boards** on six hiring platforms: Greenhouse, Lever, Ashby, SmartRecruiters, Workable and **Keka**, which many Indian startups use. The default list ([src/sources/companies.ts](src/sources/companies.ts)) covers 71 companies:
   - **Hiring in India:** Swiggy, Paytm, Meesho, CRED, Razorpay, Freshworks, Zeta, Sarvam AI, Groww, Tekion and InMobi.
@@ -137,11 +137,27 @@ Only sources that publish their listings openly. Nothing is scraped and nothing 
   - **Global companies with Indian offices:** Bosch, ServiceNow, Databricks, Stripe, MongoDB, Okta, Zscaler and Snowflake.
   - **Remote-first:** GitLab, Supabase, PostHog, Sentry, Linear and others.
 - **Remote-job feeds:** [Remotive](https://remotive.com), [Remote OK](https://remoteok.com), [Himalayas](https://himalayas.app) and [Jobicy](https://jobicy.com). Each listing is credited "via" its feed and links back to the feed's own page, as their terms ask. Feeds are read at most every six hours.
+- **LinkedIn and Naukri, from your job-alert emails.** Neither site offers open listings, and both block automated searches, so aavedan reads what they already send you. Turn on job alerts on both sites, then give aavedan read-only access to your Gmail (below). Each `find` reads the last two weeks of alert emails, takes every job in them, and rates those jobs like any other. They are credited "via LinkedIn alert" or "via Naukri alert". Applying to them stays with you, in your own signed-in browser: `aavedan apply` names the link and never fills those sites.
 - **One posting from anywhere:** `aavedan add-job <link>` reads a single page you send it, the way your browser would, and uses the job data most careers pages publish for search engines.
 
 A run reads about 10,800 postings. Add any other company with `aavedan add-company <board link>`.
 
-Naukri, LinkedIn and X are left out on purpose. They offer no open listings, and their terms forbid scraping and automated applying. Send aavedan a posting link instead. If its Apply button leads to a company careers page, that page works.
+LinkedIn and Naukri searches are never scraped, and their sites are never automated: only the alert emails they send you are read. X is not covered: it has no job alerts, and its search needs a sign-in or a paid API. For a posting you find there, send aavedan the link. If its Apply button leads to a company careers page, that page works.
+
+### Reading LinkedIn and Naukri job alerts
+
+1. **Turn on alerts.**
+   - **LinkedIn:** search jobs, then switch on **Set alert**. Choose daily, by email.
+   - **Naukri:** create a job alert under **Job Alerts**.
+2. **Make a Google app password.** Visit [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords); this needs 2-step verification on. Name it "aavedan". It gives a 16-letter password that can only be used for mail, and you can revoke it at any time.
+3. **Add both values to `.env`** in this folder:
+
+   ```
+   GMAIL_USER=you@gmail.com
+   GMAIL_APP_PASSWORD=abcdabcdabcdabcd
+   ```
+
+`aavedan doctor` shows whether it is set. aavedan opens your mailbox read-only and searches only for emails from LinkedIn and Naukri alert senders. It never marks, moves, deletes or sends anything.
 
 ## Privacy
 

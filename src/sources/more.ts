@@ -88,6 +88,12 @@ export async function describe(job: Job): Promise<string> {
   if (job.description) return job.description;
   if (job.board === 'smartrecruiters') return describeSmartRecruiters(job);
   if (job.board === 'workable') return describeWorkable(job);
+  if (job.board === 'linkedin' || job.board === 'naukri') {
+    // One read of the public posting page, like opening the link from the alert. No retries: if the site
+    // asks for a sign-in or a bot check, rate the job on what the alert email said.
+    const page = await jobFromAnyPage(job.url);
+    return page?.description || job.description;
+  }
   return '';
 }
 

@@ -12,7 +12,8 @@ import { loadJobs, saveJobs, findJob, ranked, loadApplications, type QueuedJob }
 import { allCompanies, addCompany } from './sources/companies.ts';
 import { jobFromLink, parseLink, listJobs } from './sources/boards.ts';
 import { jobFromAnyPage } from './sources/more.ts';
-import type { Job } from './sources/types.ts';
+import { OWN_ACCOUNT_BOARDS, type Job } from './sources/types.ts';
+import { alertsConfigured } from './sources/alerts.ts';
 import { judge } from './jobs/filter.ts';
 import { rankJob } from './jobs/rank.ts';
 import { tailor } from './tailor/write.ts';
@@ -44,7 +45,7 @@ const HELP = `aavedan · आवेदन — find jobs, tailor your resume, fill
 
   aavedan init <resume.pdf>        read your resume into me/profile.json, then a short interview
   aavedan doctor                   check that everything is in place
-  aavedan find [--rank 60]         read the job boards, filter, and rate new jobs against your profile
+  aavedan find [--rank 60]         read the job boards (and your LinkedIn/Naukri alert emails), filter, and rate new jobs
   aavedan list [--all] [--limit 25]  the ranked queue
   aavedan show <a12>               one job: fit, gaps, link
   aavedan tailor <a12> [--cover]   a one-page resume (and cover letter) for that job, as PDFs
@@ -177,6 +178,7 @@ async function main() {
         ['Google Chrome', fs.existsSync('/Applications/Google Chrome.app') || fs.existsSync('/usr/bin/google-chrome') || fs.existsSync('C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'), 'install Chrome, or run npx playwright install chromium'],
         ['me/resume.pdf', fs.existsSync(paths.resume), 'aavedan init your-resume.pdf'],
         ['me/profile.json', fs.existsSync(paths.profile), 'aavedan init your-resume.pdf'],
+        ['LinkedIn and Naukri job alerts (optional)', alertsConfigured(), 'set GMAIL_USER and GMAIL_APP_PASSWORD in .env; see the README'],
       ];
       for (const [name, ok, hint] of checks) say(`${ok ? '✓' : '✗'} ${name}${ok ? '' : `  → ${hint}`}`);
       if (fs.existsSync(paths.profile)) {
@@ -254,7 +256,15 @@ async function main() {
       }
       saveJobs(file);
       if (!targets.length) targets = ranked(file).filter(q => q.fit!.score >= profile.preferences.minFit).slice(0, Number(flag('count', '3')));
-      if (!targets.length) throw new Error('Nothing to apply to. Run aavedan find, or pass a job id or link.');
+      // LinkedIn and Naukri take applications only from the person's own signed-in account: never filled here.
+      for (const q of targets.filter(q => OWN_ACCOUNT_BOARDS.includes(q.job.board))) {
+        say(`${q.handle} ${q.job.company} · ${q.job.title} is on ${q.job.via ?? q.job.board}: apply from your own signed-in browser.\n  ${q.job.url}\n  A resume for it: aavedan tailor ${q.handle}   When sent: aavedan done ${q.handle}`);
+      }
+      targets = targets.filter(q => !OWN_ACCOUNT_BOARDS.includes(q.job.board));
+      if (!targets.length) {
+        if (positional.length) break;
+        throw new Error('Nothing to apply to. Run aavedan find, or pass a job id or link.');
+      }
       const send = flags.has('--send');
       say(send ? `Applying to ${targets.length}. Each form waits for your yes before it is sent.` : `Rehearsing ${targets.length}: every form is filled and checked, nothing is sent. Add --send to send.`);
       const ctx = await openBrowser({ headless: flags.has('--headless') });

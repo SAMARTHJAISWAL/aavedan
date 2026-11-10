@@ -20,7 +20,9 @@ Skills in `.claude/skills/` drive the CLI (`node bin/aavedan.js …`); the CLI i
 
 ## Layout
 
-- `src/sources/` public Greenhouse, Lever and Ashby board APIs; `companies.ts` is the default list
+- `src/sources/` public board APIs (Greenhouse, Lever, Ashby, SmartRecruiters, Workable, Keka), remote feeds, and
+  `alerts.ts`: LinkedIn/Naukri job-alert emails read from Gmail over IMAP, read-only. Never scrape or automate
+  LinkedIn, Naukri or X; applying there stays in the person's own browser. `companies.ts` is the default list
 - `src/jobs/` rule filters (`filter.ts`, no model), Claude ranking (`rank.ts`), the queue (`store.ts`)
 - `src/apply/` `page.ts` runs inside the page (self-contained functions only); `fill.ts` types and clicks;
   `plan.ts` decides answers; `run.ts` is one application end to end

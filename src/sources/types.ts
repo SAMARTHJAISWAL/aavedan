@@ -1,8 +1,11 @@
 /** Company boards aavedan reads directly, remote-job feeds, and single pages the person pasted. */
-export type Board = 'greenhouse' | 'lever' | 'ashby' | 'smartrecruiters' | 'workable' | 'keka' | 'remotive' | 'remoteok' | 'himalayas' | 'jobicy' | 'link';
+export type Board = 'greenhouse' | 'lever' | 'ashby' | 'smartrecruiters' | 'workable' | 'keka' | 'remotive' | 'remoteok' | 'himalayas' | 'jobicy' | 'linkedin' | 'naukri' | 'link';
 
 /** Boards whose forms aavedan has been tested on; others are filled from the person's own browser. */
 export const FORM_BOARDS: Board[] = ['greenhouse', 'lever', 'ashby'];
+
+/** Sites whose applications need the person's own signed-in account: aavedan never fills them. */
+export const OWN_ACCOUNT_BOARDS: Board[] = ['linkedin', 'naukri'];
 
 export interface Company {
   name: string;
