@@ -75,7 +75,10 @@ export function workRightConflict(label: string, value: string, profile: Profile
   const yes = /^yes\b/.test(v), no = /^no\b/.test(v);
   if (!yes && !no) return false;
   const place = placeOf(job);
-  const countries = [...(place.indiaAny || (!place.countries.length && profile.country === 'India') ? ['India'] : []), ...place.countries];
+  // "…to remain in your current location" asks about where the person lives, not every place the job names.
+  const here = /current (location|country)|where you (live|are based)|country (of|where you) (residence|reside)/i.test(label) && profile.country;
+  const countries = here ? [profile.country as string]
+    : [...(place.indiaAny || (!place.countries.length && profile.country === 'India') ? ['India'] : []), ...place.countries];
   if (!countries.length) return false;
   const free = countries.every(c => profile.workRights.some(w => w.country.toLowerCase() === c.toLowerCase() && w.status !== 'needs-sponsorship'));
   if (/sponsor|visa/i.test(label)) return free ? yes : no; // "Will you require sponsorship?"
