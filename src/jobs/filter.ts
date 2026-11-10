@@ -129,8 +129,11 @@ export function judge(job: Job, profile: Profile, now = new Date()): Verdict {
     const age = (now.getTime() - new Date(job.postedAt).getTime()) / 86_400_000;
     if (age > limits.maxAgeDays) return fail(`posted ${Math.round(age)} days ago`);
   }
-  const roleWords = prefs.roles.flatMap(r => r.toLowerCase().split(/\W+/)).filter(w => w.length > 2 && !['engineer', 'developer', 'role'].includes(w));
-  if (!TECH.test(job.title) && !roleWords.some(w => job.title.toLowerCase().includes(w))) return fail('not a role you are looking for');
+  // Words from the roles asked for; short ones like "BI" or "ML" must stand alone, longer ones may start a word ("analyst" in "analysts").
+  const roleWords = prefs.roles.flatMap(r => r.toLowerCase().split(/\W+/)).filter(w => w.length >= 2 && !['engineer', 'developer', 'role'].includes(w));
+  const title = job.title.toLowerCase();
+  const hasWord = (w: string) => new RegExp(String.raw`\b${w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}${w.length <= 2 ? String.raw`\b` : ''}`).test(title);
+  if (!TECH.test(job.title) && !roleWords.some(hasWord)) return fail('not a role you are looking for');
 
   if (!placeOk(place, profile)) return fail(`location: ${job.locations.join('; ') || 'not stated'}`);
 

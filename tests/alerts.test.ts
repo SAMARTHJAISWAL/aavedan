@@ -33,6 +33,24 @@ describe('LinkedIn alert emails', () => {
   });
 });
 
+// The other layout: the whole card is one link, and the footer has its own "a · b · c" line.
+const linkedinCards = `
+<a href="https://www.linkedin.com/comm/jobs/view/4200000001/?trackingId=q"><table><tr><td><img alt="Umbrella Labs"></td>
+  <td><p>Product Analyst</p><p>Umbrella Labs &middot; Bengaluru (Hybrid)</p><p>₹600K-₹900K / year</p><p>Easy Apply</p></td></tr></table></a>
+<a href="https://www.linkedin.com/comm/jobs/view/4200000002/?trackingId=r"><img alt="Hooli"><p>Data Engineer</p><p>Hooli &middot; India (Remote)</p><p>Easy Apply</p></a>
+<p>View all jobs</p><p>You are receiving Jobs You Might Be Interested In emails.</p>
+<p>Manage recommendations &middot; Unsubscribe &middot; Help</p>`;
+
+describe('LinkedIn alert emails with whole-card links', () => {
+  const jobs = parseLinkedInAlert(linkedinCards);
+  it('reads the title, company and place from inside the link, never from the footer', () => {
+    expect(jobs.map(j => [j.title, j.company, j.locations[0], j.remote])).toEqual([
+      ['Product Analyst', 'Umbrella Labs', 'Bengaluru (Hybrid)', false],
+      ['Data Engineer', 'Hooli', 'India (Remote)', true],
+    ]);
+  });
+});
+
 describe('Naukri alert emails', () => {
   const jobs = parseNaukriAlert(naukri);
   it('reads title, company, place and the experience asked', () => {

@@ -30,28 +30,32 @@ function anchors(html: string): Anchor[] {
   return out;
 }
 
-const NOISE = /^(view job|apply|easy apply|see all jobs|see more jobs|save|actively recruiting|promoted|be an early applicant|new|unsubscribe|manage|job alert|\d+ (applicants?|connections?|alumni)|.*\bago)$/i;
+const NOISE = /^(view job|view all jobs|apply|apply now|easy apply|see all jobs|see more jobs|save|actively recruiting|promoted|be an early applicant|new|message|unsubscribe|help|manage|job alert|\d+ (applicants?|connections?|alumni|school alumni)|.*\bago|[₹$€£][\d.,]+[kmKM]?\s*(-|–).*)$/i;
+
+/** The company is often only in a logo's alt text. */
+function logoAlt(html: string): string {
+  return decodeEntities(html.match(/<img\b[^>]*alt\s*=\s*["']([^"']{2,80})["']/i)?.[1] ?? '').trim();
+}
 
 /**
- * One job card per posting id: the title is the link text, and the lines after it, up to the next
- * card, hold the company and the place (LinkedIn writes "Company · Place", Naukri puts them on
- * separate lines next to the experience asked).
+ * One job card per posting id: the region from the posting's first link up to the next posting's.
+ * The title is the card's first line; the company and place are on the first line after it that reads
+ * "Company · Place" (LinkedIn), or on separate lines next to the experience asked (Naukri).
  */
-function cards(html: string, idOf: (href: string) => string | null): { id: string; href: string; title: string; lines: string[] }[] {
+function cards(html: string, idOf: (href: string) => string | null): { id: string; href: string; title: string; lines: string[]; logo: string }[] {
   const all = anchors(html).map(a => ({ ...a, id: idOf(a.href) })).filter((a): a is Anchor & { id: string } => !!a.id);
   const firstIndex = new Map<string, number>();
   all.forEach((a, i) => { if (!firstIndex.has(a.id)) firstIndex.set(a.id, i); });
   const ids = [...firstIndex.keys()];
   return ids.map((id, k) => {
-    const mine = all.filter(a => a.id === id);
+    const first = all[firstIndex.get(id)!]!;
     const next = ids[k + 1] !== undefined ? all[firstIndex.get(ids[k + 1]!)!]!.start : html.length;
-    const from = mine[0]!.start;
-    const title = mine.map(a => a.text).find(t => t && !NOISE.test(t) && t.length < 120) ?? '';
-    const lines = htmlToText(html.slice(from, next))
-      .split('\n').map(l => l.replace(/^•\s*/, '').trim())
-      .filter(l => l && l !== title && !NOISE.test(l) && l.length < 160);
-    return { id, href: mine[0]!.href, title, lines };
-  }).filter(c => c.title);
+    const region = html.slice(first.start, next);
+    const lines = htmlToText(region)
+      .split('\n').map(l => l.replace(/^•\s*/, '').replace(/\s+/g, ' ').trim())
+      .filter(l => l && !NOISE.test(l) && l.length < 160);
+    return { id, href: first.href, title: lines[0] ?? '', lines: lines.slice(1), logo: logoAlt(region) };
+  }).filter(c => c.title && c.title.length < 120);
 }
 
 function alertJob(site: AlertSite, c: { id: string; title: string; company: string; place: string; url: string; description: string }, date: string | null): Job {
@@ -70,10 +74,11 @@ const LI_ID = /linkedin\.com\/(?:comm\/)?jobs\/view\/(?:[^/?#]*-)?(\d{6,})/i;
 
 export function parseLinkedInAlert(html: string, date: string | null = null): Job[] {
   return cards(html, h => h.match(LI_ID)?.[1] ?? null).map(c => {
-    const dot = c.lines.find(l => /\s·\s/.test(l));
-    const [company, ...rest] = dot ? dot.split(/\s·\s/) : [c.lines[0] ?? '', c.lines[1] ?? ''];
+    // The first "Company · Place" line after the title; the footer has one too, so never a later one.
+    const dot = c.lines.slice(0, 3).find(l => /\s·\s/.test(l));
+    const [company, ...place] = dot ? dot.split(/\s·\s/) : [c.logo];
     return alertJob('linkedin', {
-      id: c.id, title: c.title, company: (company ?? '').trim() || 'LinkedIn', place: rest.join(', ').trim(),
+      id: c.id, title: c.title, company: (company ?? '').trim() || c.logo || 'LinkedIn', place: place.join(', ').trim(),
       url: `https://www.linkedin.com/jobs/view/${c.id}/`, description: '',
     }, date);
   });

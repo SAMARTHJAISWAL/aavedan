@@ -1,4 +1,4 @@
-const ENTITIES: Record<string, string> = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', '#39': "'", rsquo: '’', lsquo: '‘', rdquo: '”', ldquo: '“', ndash: '–', mdash: '—', hellip: '…', bull: '•' };
+const ENTITIES: Record<string, string> = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', '#39': "'", rsquo: '’', lsquo: '‘', rdquo: '”', ldquo: '“', ndash: '–', mdash: '—', hellip: '…', bull: '•', middot: '·', zwnj: '', zwj: '', shy: '', thinsp: ' ', ensp: ' ', emsp: ' ', copy: '©', reg: '®', trade: '™', rarr: '→', laquo: '«', raquo: '»', rsaquo: '›', lsaquo: '‹', rupee: '₹' };
 
 export function decodeEntities(s: string): string {
   return s.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+\d*);/gi, (m, e: string) => {
