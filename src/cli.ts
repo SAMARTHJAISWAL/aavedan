@@ -56,6 +56,7 @@ const HELP = `aavedan · आवेदन — find jobs, tailor your resume, fill
            [--tailor] [--cover]    tailor the resume (and write a cover letter) for each first
   aavedan handoff <a12>            send it yourself: files in Downloads, an answer sheet, the form, all opened
   aavedan done <a12>               record a job you sent from your own browser
+  aavedan wait <a12> ["why"]       park a job only you can send (LinkedIn, Naukri, a voice note): waiting, not sent
   aavedan skip <a12 ...>           drop jobs from the queue
   aavedan status                   where you stand, and what Claude has cost
   aavedan board [--open]           your applications and queue as a page: me/board.html
@@ -258,7 +259,7 @@ async function main() {
       if (!targets.length) targets = ranked(file).filter(q => q.fit!.score >= profile.preferences.minFit).slice(0, Number(flag('count', '3')));
       // LinkedIn and Naukri take applications only from the person's own signed-in account: never filled here.
       for (const q of targets.filter(q => OWN_ACCOUNT_BOARDS.includes(q.job.board))) {
-        say(`${q.handle} ${q.job.company} · ${q.job.title} is on ${q.job.via ?? q.job.board}: apply from your own signed-in browser.\n  ${q.job.url}\n  A resume for it: aavedan tailor ${q.handle}   When sent: aavedan done ${q.handle}`);
+        say(`${q.handle} ${q.job.company} · ${q.job.title} is on ${q.job.via ?? q.job.board}: apply from your own signed-in browser.\n  ${q.job.url}\n  A resume for it: aavedan tailor ${q.handle}   Park it: aavedan wait ${q.handle}   When sent: aavedan done ${q.handle}`);
       }
       targets = targets.filter(q => !OWN_ACCOUNT_BOARDS.includes(q.job.board));
       if (!targets.length) {
@@ -323,6 +324,27 @@ async function main() {
       q.status = 'applied';
       saveJobs(f);
       say(`Recorded: ${q.job.company} · ${q.job.title} sent.`);
+      break;
+    }
+    case 'wait': {
+      // A job only the person can send (LinkedIn, Naukri, a form with a voice note…): park it as waiting, open nothing.
+      const f = loadJobs();
+      const q = findJob(f, positional[0] ?? '');
+      if (!q) throw new Error('Usage: aavedan wait <id> ["what you need to do"]');
+      const rec = loadApplications().find(a => a.jobId === q.job.id);
+      const dir = fs.existsSync(paths.tailored) ? fs.readdirSync(paths.tailored).find(d => d.startsWith(`${q.handle}-`)) : undefined;
+      const pdf = dir ? fs.readdirSync(path.join(paths.tailored, dir)).find(n => n.endsWith('.pdf')) : undefined;
+      const where = OWN_ACCOUNT_BOARDS.includes(q.job.board) ? `apply from your own ${q.job.board === 'naukri' ? 'Naukri' : 'LinkedIn'}` : 'send it from your own browser';
+      recordApplication({
+        jobId: q.job.id, handle: q.handle, company: q.job.company, title: q.job.title, url: q.job.url,
+        location: q.job.locations.join('; '), status: 'handed-off', reason: positional[1] ?? `waiting for you to ${where}`,
+        at: new Date().toISOString(), fitScore: q.fit?.score ?? null,
+        resume: rec?.resume ?? (dir && pdf ? path.join(paths.tailored, dir, pdf) : null), coverLetter: rec?.coverLetter ?? null,
+        answers: rec?.answers ?? [], note: '',
+      });
+      q.status = 'handed-off';
+      saveJobs(f);
+      say(`Waiting for you: ${q.job.company} · ${q.job.title}\n  ${q.job.url}\nWhen you have sent it: aavedan done ${q.handle}`);
       break;
     }
     case 'add-job': {

@@ -108,6 +108,7 @@ Open `claude` in the folder and type `/setup`. The skills run the same commands 
 | `… --tailor --cover` | Tailor first, and attach a cover letter |
 | `… --send --no-input --yes` | Unattended (scripts, Claude Code): send what is complete, hold the rest |
 | `aavedan handoff <id>`, `aavedan done <id>` | Send it from your own browser with every answer ready; then record it as sent |
+| `aavedan wait <id> ["why"]` | Park a job only you can send (LinkedIn, Naukri, a voice note) as waiting for you, never as sent |
 | `aavedan answer "<question>" "<answer>"` | Save an answer that later forms reuse |
 | `aavedan add-company <board link>` | Read another company's Greenhouse, Lever or Ashby board |
 | `aavedan status`, `aavedan board --open` | Where you stand; the board page |
