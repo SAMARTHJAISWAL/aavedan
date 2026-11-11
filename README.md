@@ -1,6 +1,6 @@
 # aavedan आवेदन
 
-[![Live demo](https://img.shields.io/badge/live%20demo-samarthjaiswal.github.io%2Faavedan-b8461b)](https://samarthjaiswal.github.io/aavedan/)
+[![Live demo](https://img.shields.io/badge/live%20demo-aavedan--six.vercel.app-b8461b)](https://aavedan-six.vercel.app/)
 [![CI](https://github.com/SAMARTHJAISWAL/aavedan/actions/workflows/ci.yml/badge.svg)](https://github.com/SAMARTHJAISWAL/aavedan/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
@@ -10,7 +10,7 @@
 
 It runs on your own computer, using your own Claude API key. There is no server and no account, and nothing about you leaves your machine except the Claude calls themselves.
 
-**[See the board for my own job search →](https://samarthjaiswal.github.io/aavedan/)**
+**[See the board for my own job search →](https://aavedan-six.vercel.app/)**
 
 ![aavedan: jobs from real postings at GitLab, Paytm and CRED, ranked against my resume, with each rehearsed form checked](docs/og.png)
 
@@ -58,7 +58,7 @@ A rehearsal (`apply` without `--send`) does everything except click Submit. This
 | **India, remote and worldwide** | Rules understand Bengaluru/Bangalore, Gurugram/Gurgaon, "Delhi NCR", "Remote - India", APAC, and remote roles that are really limited to one region ("Remote - US", "EMEA", a remote flag on a Vienna office). Forms that ask for notice period, current and expected CTC in LPA, or Indian cities get answers from the profile. |
 | **Your Claude API key** | A cheap, fast model (Claude Haiku 5.5) makes the decisions: fit scores, which detail goes in which box. A stronger one (Claude Opus 5.5) writes the sentences. It runs as a plain command-line tool and also as Claude Code skills. |
 | **Reads forms like a person** | Searchable dropdowns that show your choice outside the input, Yes/No buttons with no input behind them, uploads that turn into a filename chip, and location boxes that keep only a picked suggestion. It types the city and takes the board's own spelling ("Bengaluru, Bengaluru Urban, Karnataka, IND"). |
-| **A board page** | `aavedan board --open` writes one HTML file with your queue, what waits for you, and every application. The [live demo](https://samarthjaiswal.github.io/aavedan/) is that page. |
+| **A board page** | `aavedan board --open` writes one HTML file with your queue, what waits for you, and every application. The [live demo](https://aavedan-six.vercel.app/) is that page. |
 
 ## Quick start
 
