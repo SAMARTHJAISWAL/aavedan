@@ -26,11 +26,15 @@ export async function find(opts: { llm: Llm; profile: Profile; companies: Compan
   const log = opts.log ?? (() => {});
   const fetcher = opts.fetcher ?? listJobs;
   const failed: string[] = [];
+  // Boards that could not be read this time: their jobs are not closed, just unseen, so they are kept.
+  const unreadBoards: string[] = [];
+  let feedsUnread = false;
   const lists = await mapLimit(opts.companies, limits.fetchConcurrency, async c => {
     try {
       return await fetcher(c);
     } catch (e) {
       failed.push(`${c.name} (${(e as Error).message})`);
+      unreadBoards.push(`${c.board}:${c.slug}:`);
       return [];
     }
   });
@@ -41,6 +45,7 @@ export async function find(opts: { llm: Llm; profile: Profile; companies: Compan
         const got = await f.load();
         fromFeeds.push(...got);
       } catch (e) {
+        feedsUnread = true;
         failed.push(`${f.name} (${(e as Error).message})`);
       }
     }
@@ -51,6 +56,7 @@ export async function find(opts: { llm: Llm; profile: Profile; companies: Compan
     try {
       fromFeeds.push(...(await alertLoader()));
     } catch (e) {
+      feedsUnread = true;
       failed.push(`Gmail job alerts (${(e as Error).message})`);
     }
   }
@@ -84,8 +90,12 @@ export async function find(opts: { llm: Llm; profile: Profile; companies: Compan
     file.jobs[job.id] = { job, fit: null, filtered, status: 'new', firstSeen: now, handle: `a${file.nextHandle++}` };
   }
   // Jobs that are no longer listed are closed; keep them only if something was done with them.
+  // A board that failed to load says nothing about its jobs, so those stay until it is read again.
   const live = new Set(all.map(j => j.id));
-  for (const [id, q] of Object.entries(file.jobs)) if (!live.has(id) && q.status === 'new') delete file.jobs[id];
+  const boardPrefixes = opts.companies.map(c => `${c.board}:${c.slug}:`);
+  const unseenOnly = (id: string) =>
+    unreadBoards.some(p => id.startsWith(p)) || (feedsUnread && !boardPrefixes.some(p => id.startsWith(p)));
+  for (const [id, q] of Object.entries(file.jobs)) if (!live.has(id) && q.status === 'new' && !unseenOnly(id)) delete file.jobs[id];
 
   const toRank = Object.values(file.jobs)
     .filter(q => !q.filtered && !q.fit && q.status === 'new')

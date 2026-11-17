@@ -6,7 +6,7 @@ const UA = 'aavedan/0.1 (+https://github.com/SAMARTHJAISWAL/aavedan)';
 
 export async function getJson(url: string): Promise<unknown> {
   for (let attempt = 0; ; attempt++) {
-    const r = await fetch(url, { headers: { 'user-agent': UA, accept: 'application/json' }, signal: AbortSignal.timeout(20_000) });
+    const r = await fetch(url, { headers: { 'user-agent': UA, accept: 'application/json' }, signal: AbortSignal.timeout(60_000) });
     if (r.status === 404) return null;
     if ((r.status === 429 || r.status >= 500) && attempt < 2) {
       await new Promise(res => setTimeout(res, 1500 * (attempt + 1)));
